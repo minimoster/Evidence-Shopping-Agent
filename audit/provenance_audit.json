@@ -1,0 +1,257 @@
+{
+  "schema_version": "source-provenance-audit-v1",
+  "audit_date_utc": "2026-10-15",
+  "assessment": "Static review completed with unresolved third-party rights and runtime risks. Not a legal clearance or a security certification.",
+  "scope": {
+    "repository": "https://github.com/YYHDBL/shopping-grpo-longhorizon",
+    "pinned_commit": "449bba2686a6ff07327cb3ea77e5f0f91ebb4239",
+    "directory": "upstream_reference/",
+    "upstream_blobs": 224,
+    "included_files": 212,
+    "included_bytes": 6038835,
+    "text_files_screened": 207,
+    "binary_images_hash_verified_only": 5,
+    "excluded_files": [
+      "data/evaluation/tasks.jsonl",
+      "data/grpo/train.jsonl",
+      "data/grpo/train.parquet",
+      "data/grpo/validation.jsonl",
+      "data/grpo/validation.parquet",
+      "data/sft/train.jsonl",
+      "data/sft/validation.jsonl",
+      "data/sft_pure_v4/all.jsonl",
+      "data/sft_pure_v4/difficulty_labels.jsonl",
+      "data/sft_pure_v4/duplicate_report.json",
+      "environments/ShopSimulator/shop_env/data/fine_items_eval_train_all.json.gz",
+      "examples/trajectories.jsonl"
+    ],
+    "scope_boundary": "Selected source, docs, configs, tests and assets only; not a complete training, dataset or model distribution. Generated caches are not part of this 212-file selection.",
+    "method": "Read-only text and source inspection; file/Git-mode checks; Git blob verification; targeted secret patterns. No upstream imports, installation, build, training, model/API call or remote write was executed by this audit."
+  },
+  "integrity": {
+    "unchanged_files_matching_pinned_git_blobs": 211,
+    "intentional_modifications": [
+      {
+        "path": "README.md",
+        "change": "Removed exactly three opaque sealed_token parameters from remote Star History image URLs. All other bytes match upstream.",
+        "original_lines": [
+          407,
+          408,
+          409
+        ],
+        "remaining_parameters": 0,
+        "exact_redaction_transform_verified": true,
+        "published_sha256": "88b25c6ce95bc1f19f18aab6e0a3e407d7527c867a236af52c732e79927503bf"
+      }
+    ],
+    "manifest": "UPSTREAM_MANIFEST.json"
+  },
+  "license_and_permission_observations": {
+    "license_copying_notice_files_found": [],
+    "copyright_spdx_or_standard_license_grants_found": [],
+    "project_license_field_present": false,
+    "permission_basis": "Publisher reports separately obtained upstream-author permission. Its text, ownership coverage and evidence were not independently examined in this review.",
+    "boundary": "Public hosting, dependency locks, embedded-source declarations and citations are not treated as a verified blanket grant for third-party code, data, models, images or outputs. No LICENSE was added and no third-party content was relicensed."
+  },
+  "third_party_sources": [
+    {
+      "component": "Embedded ShopSimulator",
+      "evidence": [
+        "environments/ShopSimulator/EMBEDDED_SOURCE.json:2-5"
+      ],
+      "repository": "https://github.com/ShopAgent-Team/ShopSimulator",
+      "base_commit": "51bb26012cee31aea7ac26177c5ffe807026ac07",
+      "source_commit": "9ecba272963960ab4a10e1a781bd05cd7634ce20",
+      "status": "Runtime, tests, templates and static assets retained; compressed product data excluded. Provenance declaration retained; independent rights/history verification not performed."
+    },
+    {
+      "component": "WebShop source markers and Bootsnipp-referenced HTML",
+      "evidence": [
+        "environments/ShopSimulator/shop_env/web_agent_site/envs/web_agent_site_env.py:17",
+        "environments/ShopSimulator/shop_env/web_agent_site/envs/web_agent_text_env.py:95",
+        "environments/ShopSimulator/shop_env/web_agent_site/templates/search_page.html:10",
+        "environments/ShopSimulator/shop_env/web_agent_site/templates/done_page.html:10"
+      ],
+      "reference_url": "https://bootsnipp.com/snippets/m13mN",
+      "status": "Source markers exist; full derivation and separate terms are unverified."
+    },
+    {
+      "component": "Bootstrap, Font Awesome and jQuery CDN resources",
+      "evidence": [
+        "environments/ShopSimulator/shop_env/web_agent_site/templates/attributes_page.html:5-8",
+        "environments/ShopSimulator/shop_env/web_agent_site/templates/search_page.html:5-6"
+      ],
+      "status": "External jsdelivr/Google CSS and JavaScript, not vendored distributions; license and payload integrity not audited."
+    },
+    {
+      "component": "Python dependencies and veRL patch",
+      "evidence": [
+        "pyproject.toml:15-49",
+        "uv.lock",
+        "patches/verl-0.8.0-shopping-dynamic-sampling.patch"
+      ],
+      "lock_packages": 273,
+      "lock_sources": {
+        "PyPI_registry": 271,
+        "editable_project": 1,
+        "fixed_transformers_git_revision": 1
+      },
+      "status": "References and patch retained; not an offline bundle or reviewed dependency-license inventory."
+    },
+    {
+      "component": "Research and tutorial references",
+      "evidence": [
+        "README.md:413-427",
+        "README.en.md:391-406",
+        "docs/research/2026-09-02-trace-grpo-credit-assignment.md:138-150",
+        "docs/research/sft_grpo_diagnosis.md"
+      ],
+      "references": [
+        "ShopSimulator",
+        "veRL",
+        "Qwen",
+        "VitaBench",
+        "EComAgentBench",
+        "qiqihezh/agentic-grpo-longhorizon",
+        "TRACE paper and alphaXiv bounded reproduction",
+        "DAPO and other research"
+      ],
+      "status": "Citations/acknowledgements preserved. External source ownership, copying boundaries and terms were not independently investigated."
+    },
+    {
+      "component": "Figures and static fallback image",
+      "files": [
+        "docs/images/project-overview-pipeline.png",
+        "docs/images/reward-v3-decision-rules.png",
+        "docs/images/shopsimulator-overview.png",
+        "docs/images/qwen3.8-27b-final200-clean-report.jpg",
+        "environments/ShopSimulator/shop_env/web_agent_site/static/images/no-image-available.png"
+      ],
+      "related_reference": {
+        "paper": "https://arxiv.org/pdf/2601.18225",
+        "paper_links": [
+          "README.md:29",
+          "README.en.md:30"
+        ],
+        "overview_image_links": [
+          "README.md:46",
+          "README.en.md:44"
+        ],
+        "report_context": "docs/evaluation-updates.md:7-41"
+      },
+      "status": "All five image blobs hash-verified. Adjacent paper links/report context are not image-specific provenance or permission. Authorship, reproduction rights, embedded examples and metadata remain unverified by this audit."
+    }
+  ],
+  "sensitive_information": {
+    "resolved_finding": {
+      "type": "Opaque token-like URL parameter",
+      "path": "README.md",
+      "original_lines": [
+        407,
+        408,
+        409
+      ],
+      "status": "Removed and exact limited transform verified. Value not reproduced; capability not tested."
+    },
+    "no_other_confirmed_live_secret_found": true,
+    "screened_patterns": [
+      "Common provider key formats",
+      "Private-key blocks",
+      "Credential URLs",
+      "Secret/token query parameters",
+      "Credential assignments",
+      "Email addresses",
+      "User home paths"
+    ],
+    "reviewed_false_positives": [
+      ".env.example:4 EMPTY placeholder",
+      "README/docs key placeholders",
+      "Client environment/argument reads",
+      "Mocked test key literals"
+    ],
+    "limitations": "Pattern checks do not prove absence. Binary image content/metadata, Git history, credentials, runtime output, remote services and excluded data were not part of the text screen."
+  },
+  "execution_and_network_risks": [
+    {
+      "id": "install-and-patch",
+      "evidence": [
+        "scripts/setup.sh:24-58",
+        "scripts/apply_verl_dynamic_sampling_patch.py:98-117"
+      ],
+      "observation": "Explicit setup installs packages, expands excluded product data, builds an index and alters installed veRL. Do not run automatically for publication review."
+    },
+    {
+      "id": "remote-model-code",
+      "evidence": [
+        "configs/grpo.yaml:21-24",
+        "scripts/train_lora_sft.py:160,296-304,480",
+        "scripts/merge_lora_adapter.py:47-55",
+        "scripts/serve_model.sh:14-19"
+      ],
+      "observation": "Model loaders enable trust_remote_code; loading/serving can download artifacts and consume GPU resources. Model code, weights and terms are outside scope."
+    },
+    {
+      "id": "model-api-transmission",
+      "evidence": [
+        "src/shopping_grpo/evaluation/rollout.py:132-205,708-714",
+        "src/shopping_grpo/evaluation/model_client.py:90-143",
+        "src/shopping_grpo/environment/context.py:153-221",
+        "scripts/collect_sft_data.py:194-206"
+      ],
+      "observation": "Collection/evaluation and tokenizer helpers can send messages/text and bearer credentials to configured endpoints. One helper defaults to api.openai.com without an explicit base URL. No call was made by this audit."
+    },
+    {
+      "id": "optional-telemetry",
+      "evidence": [
+        "scripts/train_grpo.py:41-44,104-114",
+        "scripts/train_lora_sft.py:97-104,233-246,508-515"
+      ],
+      "observation": "SwanLab is opt-in; enabled modes can transmit online telemetry. SFT enabled-mode default is online."
+    },
+    {
+      "id": "network-listeners",
+      "evidence": [
+        "environments/ShopSimulator/shop_env/shop_env/pack_api.py:20-21,42-124,151-153",
+        "environments/ShopSimulator/shop_env/web_agent_site/app.py:276-287"
+      ],
+      "observation": "Explicit server entry points bind 0.0.0.0; inspected simulator API routes show no authentication. Restrict to loopback or an isolated network before a separately authorized run."
+    },
+    {
+      "id": "browser-remote-assets",
+      "evidence": [
+        "README.md:13-17,404-410,431-433",
+        "environments/ShopSimulator/shop_env/web_agent_site/templates/attributes_page.html:5-8",
+        "environments/ShopSimulator/shop_env/web_agent_site/templates/item_page.html:34",
+        "environments/ShopSimulator/shop_env/web_agent_site/templates/results_page.html:62"
+      ],
+      "observation": "Rendering docs/templates can request remote badges, charts, avatars, CDN and product images. CDN JavaScript executes in a browser; this is not an offline-only reference."
+    },
+    {
+      "id": "import-side-effects",
+      "evidence": [
+        "environments/ShopSimulator/shop_env/shop_env/pack_api.py:28-39",
+        "environments/ShopSimulator/shop_env/shop_env/shop_agent.py:10"
+      ],
+      "observation": "Some simulator imports configure file logging; importing all source modules is not a side-effect-free audit method."
+    }
+  ],
+  "structural_checks": {
+    "symlinks": 0,
+    "gitlinks_submodules": 0,
+    "gitmodules": 0,
+    "gitattributes": 0,
+    "git_lfs_pointers": 0,
+    "github_workflows": 0,
+    "original_executable_mode_files": 18,
+    "build_system": "setuptools.build_meta; no tracked custom setup.py/build hook found",
+    "interpretation": "No tracked CI/hook path found that automatically launches training on publication. This does not certify scripts, dependencies or model payloads as safe."
+  },
+  "unverified_and_recommended_exclusions": [
+    "Keep all 12 listed raw data/trajectory/parquet/catalog/duplicate-report files excluded unless separately reviewed and authorized.",
+    "Keep model weights, checkpoints, adapters, raw observations/responses/logs, caches, virtual environments, credentials and unreviewed Git history excluded.",
+    "Resolve embedded ShopSimulator/WebShop, snippet/template, figure and dependency rights separately; preserve attribution and do not imply blanket relicensing.",
+    "Retained metadata, task-ID manifests, aggregate reports, test/documentation examples and citations remain upstream/derived content. Raw-dataset exclusion does not establish that every document is free of derived material.",
+    "Historical or future-looking docs and performance summaries are not newly reproduced results or a verified complete record of weights/logs/training.",
+    "Re-run publication checks after changes. External URL targets, dependency/model payloads and deployment security remain outside this snapshot."
+  ]
+}

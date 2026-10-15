@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>证据购物实验室 · 离线脚本演示</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/">E<span>•</span> 证据购物实验室</a><span class="offline">LOCAL FIXTURE ONLY</span></header>
+  <main>
+    <section class="intro"><p class="eyebrow">PUBLIC EVIDENCE / BEFORE PURCHASE</p><h1>先核验，再执行。</h1><p class="subtitle">一段看得见的工具循环，以及购买前强制核验的闸门。</p><p class="warning">离线脚本演示 · 非 LLM · 不真实购物</p><p class="fine">ScriptedPolicy 只使用原始 query 与公开 observation。商品、品牌、价格均为原创合成数据；这里不接账号、支付、外部商城或模型。</p></section>
+    <div id="message" role="status" aria-live="polite"></div>
+    <div class="workspace">
+      <section class="panel controls"><div class="section-title"><span class="stepno">01</span><h2>设置一项合成任务</h2></div>
+        <label for="scenario">场景</label><select id="scenario"></select>
+        <label for="query">窄语法 query</label><textarea id="query" rows="5" maxlength="1000" spellcheck="false"></textarea>
+        <p class="hint">格式：品类:耳机;预算:不超过100元;品牌:澄音;颜色:黑色<br>只接受明确字段与人民币上限，不是通用自然语言问答。</p>
+        <button id="apply" class="secondary">应用输入 / 新建任务</button>
+        <div class="buttonrow"><button id="run" class="primary">运行到结束 <span>↗</span></button><button id="step">单步</button></div><button id="reset" class="quiet">重置当前任务</button>
+        <div class="rulebox"><strong>购买前强制检查</strong><p>当前商品、当前变体、当前价格、显式预算、规格证据。任一未知或不匹配即阻止。</p></div>
+      </section>
+      <section class="panel shop"><div class="section-title"><span class="stepno">02</span><h2>公开商店观察</h2><span id="viewmode" class="tag">当前</span></div>
+        <div class="statusline"><span id="status" class="status">准备中</span><span id="steps" class="mono"></span></div>
+        <p id="reason" class="hint"></p><div id="observation" aria-live="polite"></div>
+        <div class="identity"><span>任务 <span id="taskid" class="mono"></span></span><span>轨迹 <span id="traceid" class="mono"></span></span></div>
+        <div class="timeline-title">工具调用顺序</div><ol id="timeline" class="timeline"></ol>
+      </section>
+      <section class="panel proof"><div class="section-title"><span class="stepno">03</span><h2>购买闸门</h2></div><div id="gate"></div></section>
+    </div>
+    <section class="panel replay"><div class="section-title"><span class="stepno">04</span><h2>公开轨迹回放</h2><button id="download" class="quiet">下载 JSON</button></div>
+      <div class="replay-controls"><button id="prev" aria-label="上一条观察">←</button><input id="seek" type="range" min="0" max="0" value="0" aria-label="选择轨迹事件"><button id="next" aria-label="下一条观察">→</button><span id="position" class="mono"></span><button id="live" class="secondary">回到当前</button></div>
+      <p class="hint">回放只浏览该浏览器会话的公开事件，不会再次执行工具。命令行 replay 可重算购买闸门；这不是真实性证明或成功率评测。</p>
+      <details><summary>查看选中事件的公开 JSON</summary><pre id="eventjson"></pre></details>
+    </section>
+    <footer>标准库 · 合成 fixture · 有界执行 · 默认 127.0.0.1<br>success 仅表示内存合成商店完成购买，不代表真实 ShopSimulator 或真实商城成功。</footer>
+  </main>
+</body>
+</html>

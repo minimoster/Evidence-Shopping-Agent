@@ -1,52 +1,40 @@
-# Provenance and public-content inventory
+# Third-party provenance and attribution
 
-## Referenced upstream, not vendored
+This integration now includes the fixed upstream code/documentation snapshot in
+upstream_reference/. It is no longer only a patch-only extension. The inventory
+and precise exclusions are in UPSTREAM_MANIFEST.json and DATASETS.md.
 
-shopping-grpo-longhorizon by YYHDBL and its contributors:
-https://github.com/YYHDBL/shopping-grpo-longhorizon
+Original project: YYHDBL/shopping-grpo-longhorizon and contributors.
+https://github.com/YYHDBL/shopping-grpo-longhorizon/tree/449bba2686a6ff07327cb3ea77e5f0f91ebb4239
 
-Pinned commit: 449bba2686a6ff07327cb3ea77e5f0f91ebb4239.
-Embedded ShopSimulator provenance is recorded upstream in
-environments/ShopSimulator/EMBEDDED_SOURCE.json, referencing source commit
-9ecba272963960ab4a10e1a781bd05cd7634ce20.
+212 source/documentation/config/asset files are included. 211 are byte-identical;
+README.md only has three remote badge token parameters removed. Original text,
+credits and source provenance otherwise remain intact. Twelve data files are not
+embedded. This is not a 224-file byte-exact repository mirror.
 
-No root LICENSE file was found in the inspected pinned source tree. This project
-does not assert that the upstream code, data, models or training artifacts are
-generally open-licensed. Obtain and retain the applicable permission yourself.
-Public visibility of this extension does not expand any upstream permissions.
+No root LICENSE/COPYING/NOTICE was found in the pinned upstream tree. The user
+requested this public code integration after reporting permission from the author;
+this does not establish or enlarge rights in embedded third-party code, images,
+datasets, models or dependencies. No new license is chosen or claimed for those
+materials or for the new extension. Public visibility is not a blanket license.
 
-## Small retained references
+Embedded ShopSimulator identifies source commit
+9ecba272963960ab4a10e1a781bd05cd7634ce20 and retains WebShop-related markers.
+Templates reference Bootstrap, jQuery and a Bootsnipp snippet; five image assets
+and dependency licenses are not independently cleared by this integration.
+Adjacent upstream prose links a ShopSimulator paper, but that is not an explicit
+per-image license statement. The audit describes the remaining scope precisely.
 
-- text_parser_fix/product_ids_text_parser.patch contains only the necessary
-  local two-file modification and limited original context for applying the diff.
-  Existing context remains attributable to upstream; do not treat it as wholly
-  original code or as relicensed here.
-- Minimal integration constants reference one public catalog product identifier,
-  one short exact-title string, two visible color names and the selected prices
-  1487/1492. These identify the reproducible boundary case, not a redistributable
-  catalog. No raw product record, original task instruction, catalog dump or full
-  observation is included.
-- Test-module names and failure descriptions identify the upstream tests that
-  were run. Runtime wrappers import the separately acquired upstream code.
-- requirements-smoke.txt lists versions of third-party packages fetched from
-  official PyPI; no dependency source or binary is bundled.
+New code is separately located in prototype/, shopping_demo/, tests_demo/,
+tests_integration/ and integration/verification scripts. Existing upstream action
+guards, loop detection, context truncation, model training and evaluation are not
+represented as original additions. The small text_parser_fix patch retains
+limited original context and is attributed to the upstream source it modifies.
 
-## Newly written extension files
+No product corpus, training/evaluation/example data records, raw simulator
+observations, model weights, private experiment logs, environment directories,
+account secrets or dependency binaries are included. Optional data can be fetched
+explicitly to ignored local paths after the user establishes applicable rights.
 
-prototype/*.py, prototype/tests/*.py, smoke/validation scripts, parser regression
-tests, public documentation and compact report exports were prepared for this
-independent extension. Existing upstream guard/loop/context/SFT/GRPO functions
-are not represented as new contributions.
-
-This repository does not choose or grant a new license for third-party content.
-No license for the new extension has been selected yet; publishing source alone
-is not an unrestricted licensing grant.
-
-## Explicitly excluded
-
-- The upstream checkout and complete original source modules.
-- Product JSON/gzip archives, search indexes, training/evaluation datasets.
-- Captured raw observations, original simulated task instructions, evidence ledgers.
-- Model weights/checkpoints/adapters, virtual environments, caches and credentials.
-
-All runtime outputs and the generated two-file overlay are ignored by Git.
+See audit/PROVENANCE_AUDIT.md for source chains, unresolved permissions,
+execution/telemetry/network risks and the exact token sanitation evidence.

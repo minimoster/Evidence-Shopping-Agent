@@ -18,7 +18,7 @@ import unittest
 
 
 HERE = Path(__file__).resolve().parent
-UPSTREAM = HERE.parent / "upstream"
+UPSTREAM = HERE.parent / ("upstream_reference" if (HERE.parent / "upstream_reference").is_dir() else "upstream")
 EXPECTED_COMMIT = "449bba2686a6ff07327cb3ea77e5f0f91ebb4239"
 EXPECTED_UPSTREAM_SOURCES = {
     "actions": "4214855d986422ee54d04cadfbbca11377c85858cbbae44f85697ea51c998e51",
@@ -47,6 +47,14 @@ def deny_external_actions(event, args):
 
 def checkout_commit():
     gitdir = UPSTREAM / ".git"
+    if not (gitdir / "HEAD").is_file():
+        manifest_path = UPSTREAM.parent / "UPSTREAM_MANIFEST.json"
+        if not manifest_path.is_file():
+            raise RuntimeError("Source needs a pinned Git checkout or explicit bundled manifest")
+        manifest = json.loads(manifest_path.read_text())
+        if UPSTREAM.name != manifest.get("snapshot_directory"):
+            raise RuntimeError("Snapshot directory differs from bundled manifest")
+        return manifest["source_commit"]
     head = (gitdir / "HEAD").read_text().strip()
     if not head.startswith("ref: "):
         return head

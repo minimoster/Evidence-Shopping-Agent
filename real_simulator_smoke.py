@@ -17,7 +17,8 @@ import time
 from offline_checks import DENIED_EVENTS, deny_external_actions
 
 ROOT = Path(__file__).resolve().parent
-UPSTREAM = ROOT / "upstream"
+from project_paths import upstream_path
+UPSTREAM = upstream_path()
 SHOP = UPSTREAM / "environments/ShopSimulator/shop_env"
 
 

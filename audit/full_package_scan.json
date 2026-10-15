@@ -1,0 +1,23 @@
+{
+  "scope": "full selected source/documentation plus extension; pattern scan, not a guarantee",
+  "scanned_files": 271,
+  "secret_pattern_findings": [],
+  "binary_images_visually_reviewed": [
+    "upstream_reference/docs/images/project-overview-pipeline.png",
+    "upstream_reference/docs/images/qwen3.8-27b-final200-clean-report.jpg",
+    "upstream_reference/docs/images/reward-v3-decision-rules.png",
+    "upstream_reference/docs/images/shopsimulator-overview.png",
+    "upstream_reference/environments/ShopSimulator/shop_env/web_agent_site/static/images/no-image-available.png"
+  ],
+  "source_readme_sanitized_parameters": 3,
+  "browser_interaction_verified": false,
+  "excluded_generated_directories": [
+    "results/",
+    "runtime/",
+    "text_parser_fix/overlay/",
+    "text_parser_fix/results/",
+    "__pycache__/"
+  ],
+  "dataset_files_embedded": 0,
+  "model_weights_embedded": 0
+}

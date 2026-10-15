@@ -11,7 +11,8 @@ import unittest
 from prototype import EvidenceLedger, parse_query, verify_purchase
 
 ROOT = Path(__file__).resolve().parents[2]
-BUILDER_PATH = ROOT / "upstream/environments/ShopSimulator/shop_env/web_agent_site/engine/observation.py"
+from project_paths import upstream_path
+BUILDER_PATH = upstream_path() / "environments/ShopSimulator/shop_env/web_agent_site/engine/observation.py"
 
 
 class UpstreamPublicSchemaTest(unittest.TestCase):

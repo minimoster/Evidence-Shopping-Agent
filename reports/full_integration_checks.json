@@ -1,0 +1,78 @@
+{
+  "scope": "full code/documentation integration plus synthetic ScriptedPolicy demo; not LLM/RL evaluation",
+  "source_commit": "449bba2686a6ff07327cb3ea77e5f0f91ebb4239",
+  "tests": [
+    {
+      "suite": "prototype",
+      "tests_run": 68,
+      "passed_methods": 68,
+      "skipped_entries": 1,
+      "failures": 0,
+      "errors": 0,
+      "successful": true,
+      "seconds": 0.023
+    },
+    {
+      "suite": "offline_demo_core_http",
+      "tests_run": 38,
+      "passed_methods": 38,
+      "skipped_entries": 0,
+      "failures": 0,
+      "errors": 0,
+      "successful": true,
+      "seconds": 0.628
+    },
+    {
+      "suite": "snapshot_and_optional_data_tools",
+      "tests_run": 7,
+      "passed_methods": 7,
+      "skipped_entries": 0,
+      "failures": 0,
+      "errors": 0,
+      "successful": true,
+      "seconds": 0.024
+    }
+  ],
+  "upstream_cpu_contract_checks": 5,
+  "embedded_simulator_unit_tests": {
+    "passed": 43,
+    "failed": 0
+  },
+  "parser_overlay_contracts": {
+    "passed": 52,
+    "failed": 0
+  },
+  "parser_overlay_security_without_capture": {
+    "passed": 43,
+    "skipped": 1,
+    "failed": 0
+  },
+  "cli_scenarios": [
+    {
+      "scenario": "success",
+      "status": "success"
+    },
+    {
+      "scenario": "budget",
+      "status": "blocked"
+    },
+    {
+      "scenario": "unknown_price",
+      "status": "blocked"
+    },
+    {
+      "scenario": "variant_price",
+      "status": "blocked"
+    },
+    {
+      "scenario": "failure",
+      "status": "failure"
+    }
+  ],
+  "browser_interaction_verified": false,
+  "browser_blocker": "Cloud browser localhost connection refused; separate headless launch socket permission denied. No wider-interface binding or bypass performed.",
+  "models_or_paid_apis_used": false,
+  "training_executed": false,
+  "real_purchase_executed": false,
+  "data_download_executed_by_optional_fetcher": false
+}

@@ -7,6 +7,7 @@ __pycache__/
 *.py[cod]
 .env
 .env.*
+!upstream_reference/.env.example
 *.pem
 *.key
 *.sqlite3
@@ -17,3 +18,9 @@ __pycache__/
 results/
 text_parser_fix/overlay/
 text_parser_fix/results/
+upstream_reference/data/**/*.jsonl
+upstream_reference/data/**/*.parquet
+upstream_reference/data/sft_pure_v4/duplicate_report.json
+upstream_reference/examples/trajectories.jsonl
+upstream_reference/environments/ShopSimulator/shop_env/data/*.gz
+audit/screenshots/

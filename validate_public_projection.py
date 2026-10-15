@@ -16,7 +16,8 @@ ROOT = Path(__file__).resolve().parent
 
 def main():
     sys.addaudithook(deny_external_actions)
-    sys.path.insert(0, str(ROOT / "upstream/src"))
+    from project_paths import upstream_path
+    sys.path.insert(0, str(upstream_path() / "src"))
     from shopping_grpo.environment.actions import product_ids
     from shopping_grpo.environment.observation import render_structured_observation
     from shopping_grpo.environment.projection import ObservationProjectionError, project_observation

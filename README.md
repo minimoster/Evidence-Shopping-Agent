@@ -1,103 +1,86 @@
-# Evidence Shopping Guard
+# Evidence-Shopping-Agent
 
-独立的购物需求结构化与可见证据购买核验原型，以及对既有 ShopSimulator
-文本解析问题的最小修复。项目用于离线工程验证，不是已训练的购物 Agent。
+完整上游代码/文档整合，加上独立的需求结构化、可见证据核验和离线脚本演示。
+**12 个数据文件未内嵌，这不是整个上游 224 文件的完整镜像，也不是已训练完成的 LLM/RL Agent。**
 
-上游项目：
+## 内容与归属
+
+- upstream_reference/：上游 shopping-grpo-longhorizon 固定提交的 212 个代码、
+  文档、配置、训练/评测脚本、依赖锁及 5 个图片资源。
+- prototype/：新增 query-only 窄语法规则、ASIN/variant/revision 绑定的购买证据核验。
+- shopping_demo/：新增可运行标准库离线演示，使用显式 ScriptedPolicy 和原创合成商品。
+- text_parser_fix/：新增最小修复 patch 与安全回归，原始源快照不应用该修复。
+- UPSTREAM_MANIFEST.json：224 个原跟踪文件逐项映射、mode、大小、固定来源和 hash；
+  212 保留、12 数据项排除。211 个保留文件字节不变，README 仅去掉 3 个
+  能力未核实的远程图片 token 参数，修改已明确记录。
+- DATASETS.md：12 项完整数据清单及显式按需获取方法。默认不下载、不安装、不训练。
+- audit/：来源/许可未核项、敏感扫描和原脚本执行风险说明。
+- reports/、RUN_RESULTS.md：实测范围与历史结果，失败和 skip 均保留。
+
+原项目及贡献者：
 https://github.com/YYHDBL/shopping-grpo-longhorizon
 
-固定提交：449bba2686a6ff07327cb3ea77e5f0f91ebb4239
+固定提交：449bba2686a6ff07327cb3ea77e5f0f91ebb4239。
+上游已有 guard、循环检测、历史截断、SFT/GRPO 不作为我们的新贡献。
+原代码/资料归属保留；图片、嵌入环境与依赖的第三方许可不能被推定扩大。
+没有为原项目或新增部分擅自添加开源许可证，详见 THIRD_PARTY_NOTICES.md。
 
-本仓库不搬运上游完整代码、商品库、原始商品 observation、训练数据或模型权重。
-第三方归属与保留片段见 THIRD_PARTY_NOTICES.md。
+## 克隆后可直接运行：离线演示
 
-## 个人增量
+Python 3.10+，仅标准库，不需模型、API key、GPU、原商品库或第三方包：
 
-- prototype/requirements.py：仅从 query 提取显式预算/规格，保留原文跨度；
-  窄语法无法解释的要求不会静默丢弃，而是阻止购买核验通过。
-- prototype/purchase_guard.py：只接受公开 observation；每条证据绑定
-  ASIN、variant、revision。未知价格/规格、超预算、选择不完整均封闭拦截；
-  切换商品或变体后不复用旧价格或旧批准。
-- text_parser_fix/product_ids_text_parser.patch：对固定上游两文件的小补丁，
-  修复 SEP 文本产品提取与投影分派不一致，并增加注入/电话/价格误识别回归。
-- 离线验证、完整语料哈希核对、真实 reset/step 接入和可复现报告。
+    python -m shopping_demo run --scenario success
+    python -m shopping_demo run --scenario budget
+    python -m shopping_demo run --scenario failure
+    python -m shopping_demo serve --port 8765
 
-上游已有的动作 guard、循环检测、历史截断、SFT/GRPO 不算本项目的新贡献。
+浏览器打开 http://127.0.0.1:8765 。页面可以新建任务、单步、运行到结束、重置、
+查看核验结果、浏览轨迹和下载公开 JSON。只绑定本地 127.0.0.1。
+详细使用、五个合成场景与 replay 命令见 DEMO_README.md。
 
-## 已执行结果
+显著限制：ScriptedPolicy 是可替换接口下的规则脚本，不是 LLM。输入只接受
+“品类:耳机;预算:不超过100元;品牌:澄音;颜色:黑色”这一类窄语法，非智能问答。
+success 仅表示合成内存商店完成模拟购买，无真实账号、支付、订单或外部商城。
+实际接口/HTTP 测试已执行；此环境浏览器访问 localhost 不通，浏览器交互未验证，
+不能将 HTTP 测试声称为浏览器端到端测试通过。
 
-- 原模拟器单元测试：43/43 通过。
-- 固定上游选定契约测试：52 项中 48 通过、3 失败、1 错误。保留失败记录。
-- 独立修复 overlay：同样 52/52 通过，另 44/44 安全/真实文本回归通过。
-- 新原型：75/75 测试通过，其中 65 为合成单测，3 为真实公开 builder
-  配合合成商品的 schema 测试，7 为真实公开轨迹相关测试。并非 75 个端到端任务。
-- 完整 23,421 商品语料的哈希和 SQLite FTS5 索引已验证；语料不随仓库分发。
-- fresh 真实环境执行 1 次 reset + 4 次 step，并同步调用新核验模块。
-  手写集成场景的预算为 1490 元：当前规格 1487 元通过，切换至 1492 元后
-  以 over_budget 拦截，旧决策失效。没有提交购买。
-- 另有 3,000 个合成 JSON 状态与 2,000 个合成 query 的有界稳健性检查。
+## 无需下载数据的检查
 
-实际 Python 为 3.12.14，9 个逻辑 CPU；未安装 torch，未发现可用 NVIDIA 设备。
-未调用模型或付费 API、未训练 SFT/GRPO、未下载权重、未执行完整任务集评测。
-摘要见 reports/，实验细节与明确局限见 RUN_RESULTS.md。
-
-## 先运行独立规则单测
-
-只需 Python 标准库：
-
+    python verify_upstream_snapshot.py
+    python offline_checks.py cpu
+    python offline_checks.py simulator
     python -m unittest discover -s prototype/tests -v
+    python -m unittest discover -s tests_demo -v
+    python -m unittest discover -s tests_integration -v
+    python text_parser_fix/prepare_overlay.py --upstream upstream_reference
+    python text_parser_fix/run_checks.py --upstream upstream_reference --source overlay --suite all
 
-未获取上游、未生成真实 capture 时，相关可选集成测试会明确 skip。
-公有仓库不附原始商品 capture，所以这一步不能重现本次全部 75 项集成测试。
+原型真实 capture 测试、修复的真实 capture 测试会在缺少本地捕获时明确 skip。
+上游原始 contracts 在原快照仍有 3 fail + 1 error；独立 overlay 修复后通过。
+本项目没有为了全绿改写原始历史失败。
 
-API 与窄语法说明见 prototype/README.md。例子：
+## 原始真实 ShopSimulator / 训练路径
 
-    from prototype import parse_query, EvidenceLedger, verify_purchase
-    requirements = parse_query("品类:耳机;预算:不超过100元;颜色:黑色")
-    ledger = EvidenceLedger()
-    ledger.ingest(public_state)
-    decision = verify_purchase(requirements, ledger, intended_asin=current_asin, intended_options=current_options)
+原始完整代码在 upstream_reference/，原始说明位于 upstream_reference/README.md。
+模拟器运行还需被排除的完整商品包；训练还需数据、权重、适合的计算资源和依赖。
+请按 DATASETS.md 显式取得已授权数据后，再用 prepare_runtime.py 准备真实环境。
+EVIDENCE_SHOPPING_UPSTREAM 可指向独立固定上游 checkout；不设时使用已内嵌源资料。
 
-public_state 必须是原生公开 observation_state，不是包含 goal/reward 的完整 info。
-decision.allowed 仅代表这些窄约束的可见证据通过，不代表任务成功或交易授权。
+存在训练脚本不等于完成训练；上游文档中的成绩属于上游，不是我们本次结果。
+没有包含未公开权重、私有日志、模型checkpoint、第三方完整商品库或账户凭据。
+不要自动运行原 setup/训练脚本或把它们接入发布 CI。原环境服务会默认外网监听、
+模型栈可能启用远程代码或遥测，执行前必须阅读 audit/PROVENANCE_AUDIT.md。
 
-## 按固定上游复现
+## 实际新增验证摘要
 
-先审查上游与脚本，并自行确认第三方代码/数据的使用权限。
-不要运行原上游 scripts/setup.sh，它会安装超出本实验范围的 SFT/GRPO 栈。
+- 固定完整商品语料曾在受控本地工作区验证 23,421 商品及哈希，未再分发。
+- 真实 reset 1 + step 4，并同步核验手写集成测试场景：1487 元可满足 1490 元上限，
+  切换至 1492 元后拦截，旧决策失效。非原始任务/盲测成功率，无购买执行。
+- 原模拟器 43/43；独立 patch 后既有 contracts 52/52，新增回归本地 44/44；
+  公有 clean 环境不带真实 capture 时为 43 pass + 1 skip。
+- 原型完整本地场景 75/75；整合版不带 capture 可跑 68 pass + 1 集成类 skip。
+- 离线 demo 的 core/HTTP 测试和源码/数据工具测试见 reports/full_integration_checks.json。
+- 无模型调用、付费 API、GPU训练、现实购物或新的完整任务集性能指标。
 
-    git clone --filter=blob:none --no-checkout --depth=1 https://github.com/YYHDBL/shopping-grpo-longhorizon.git upstream
-    git -C upstream sparse-checkout init --no-cone
-    printf '/*\n!/data/sft/\n!/data/sft_pure_v4/\n!/docs/images/\n!/uv.lock\n' > upstream/.git/info/sparse-checkout
-    git -C upstream checkout --detach 449bba2686a6ff07327cb3ea77e5f0f91ebb4239
-
-若浅克隆未包含该提交，需明确 fetch 固定提交后再 checkout，不要静默改用最新代码。
-
-    python -m venv .venv
-    .venv/bin/python -m pip install --index-url https://pypi.org/simple -r requirements-smoke.txt
-    .venv/bin/python prepare_runtime.py
-    .venv/bin/python offline_checks.py simulator
-    .venv/bin/python offline_checks.py contracts
-    .venv/bin/python offline_checks.py cpu
-    .venv/bin/python real_simulator_smoke.py
-    .venv/bin/python real_simulator_smoke.py --with-purchase-gate
-    .venv/bin/python -m unittest discover -s prototype/tests -v
-    .venv/bin/python robustness_checks.py
-    .venv/bin/python validate_public_projection.py
-
-contracts 在未经修复的固定提交上预期非零，不能把初始失败说成全绿。
-准备及测试独立补丁的方法见 text_parser_fix/README.md。
-实际执行环境与上述 fresh-venv 复现建议的差别见 RUN_RESULTS.md。
-
-所有运行时数据、capture、索引、overlay、虚拟环境和日志均被 .gitignore 排除。
-重新运行后不要强行添加这些文件到公有仓库。
-
-## 不能据此声称
-
-- 已实现通用 NLU、LLM 自主购物、跨页面智能规划或现实自动结账。
-- 提高了多少购物成功率，复现了 GRPO 指标，或通过了原始任务。
-- 手写边界场景是独立抽样/盲测任务，或把脚本动作回放算作模型决策。
-
-当前证据只保留最新快照为有效依据，历史是审计而非跨页证据融合。
-不核对现实结账的运费、税、数量、商家真实性、退款条款或实际币种。
-正式 Agent 对照实验应单独明确模型、任务隔离、费用预算和指标。
+本次是“完整可读的上游代码资料 + 可运行离线工程增量”，不是“已补齐所有数据、
+权重与实验日志，也已训练完成的完整智能购物系统”。

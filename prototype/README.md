@@ -20,6 +20,12 @@ Raw captures are not published. Use the root README to acquire the fixed upstrea
 and regenerate results/public_simulator_trace.json locally, then rerun tests.
 Only compact historical result exports are committed in reports/.
 
+The integrated repository now bundles the selected upstream code under
+upstream_reference/, so its three public-builder tests run without a second
+clone. With no raw capture, this integrated tree runs 68 test methods and skips
+one optional trace test class. The earlier patch-only checkout ran 65 methods
+and skipped two optional integration classes. Neither is a 75-task benchmark.
+
 ## Query-only requirements
 
     from prototype import parse_query
