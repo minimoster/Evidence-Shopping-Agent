@@ -1,0 +1,20 @@
+{
+  "suite": "real_simulator_scripted_smoke",
+  "reset_calls": 1,
+  "step_calls": 4,
+  "public_observations": 5,
+  "first_search_page_products": 20,
+  "total_search_results": 145,
+  "visible_option_axes": 1,
+  "variant_switch_exercised": true,
+  "purchases_submitted": 0,
+  "model_calls": 0,
+  "external_api_calls": 0,
+  "external_network": "denied",
+  "blocked_external_action_attempts": [],
+  "success_rate": "not measured; no agent or policy evaluation",
+  "elapsed_seconds": 9.065,
+  "public_export_omitted_fields": [
+    "opened_asin"
+  ]
+}

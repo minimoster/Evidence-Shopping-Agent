@@ -1,0 +1,10 @@
+{
+  "scan": "local regex and explicit publication allowlist review",
+  "scanned_file_count": 38,
+  "secret_pattern_findings": [],
+  "prohibited_file_findings": [],
+  "raw_product_captures_bundled": false,
+  "full_upstream_or_overlay_bundled": false,
+  "limitations": "Pattern scanning is not a guarantee; publication worker should review the exact allowlist.",
+  "bytes": 141525
+}

@@ -1,0 +1,12 @@
+{
+  "suite": "contracts",
+  "tests_run": 52,
+  "failures": 3,
+  "errors": 1,
+  "skipped": 0,
+  "passed": 48,
+  "successful": false,
+  "external_network": "denied",
+  "elapsed_seconds": 0.036,
+  "blocked_external_action_attempts": []
+}

@@ -1,0 +1,12 @@
+{
+  "suite": "simulator",
+  "tests_run": 43,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": 43,
+  "successful": true,
+  "external_network": "denied",
+  "elapsed_seconds": 0.023,
+  "blocked_external_action_attempts": []
+}

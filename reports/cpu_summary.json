@@ -1,0 +1,15 @@
+{
+  "suite": "upstream_cpu_synthetic_contracts",
+  "schema_version": "shopping-cpu-smoke-v1",
+  "checks": [
+    "action_schema",
+    "trajectory_normalization",
+    "reward_sample",
+    "sft_label_mask",
+    "dynamic_sampling_grouping"
+  ],
+  "check_count": 5,
+  "external_network": "denied",
+  "elapsed_seconds": 0.021,
+  "blocked_external_action_attempts": []
+}

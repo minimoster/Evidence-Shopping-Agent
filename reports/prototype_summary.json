@@ -1,0 +1,15 @@
+{
+  "implementation": "prototype/requirements.py + prototype/purchase_guard.py",
+  "upstream_commit": "449bba2686a6ff07327cb3ea77e5f0f91ebb4239",
+  "unit_tests_synthetic": 65,
+  "actual_public_builder_schema_tests_with_synthetic_products": 3,
+  "real_public_trace_related_tests": 7,
+  "total_tests": 75,
+  "passed_tests": 75,
+  "skipped_tests": 0,
+  "models_or_paid_apis_used": false,
+  "training_executed": false,
+  "buy_actions_executed_by_prototype": 0,
+  "agent_or_rl_success_rate_claimed": false,
+  "public_export_note": "Raw catalog-derived captures are intentionally not redistributed."
+}

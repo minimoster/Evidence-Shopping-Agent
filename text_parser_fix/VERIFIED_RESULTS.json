@@ -1,0 +1,126 @@
+{
+  "upstream_commit": "449bba2686a6ff07327cb3ea77e5f0f91ebb4239",
+  "before": [
+    {
+      "suite": "contracts",
+      "tests_run": 52,
+      "passed": 48,
+      "failures": 3,
+      "errors": 1,
+      "skipped": 0,
+      "failure_events": 3,
+      "error_events": 1,
+      "successful": false,
+      "elapsed_seconds": 0.0068
+    },
+    {
+      "suite": "security",
+      "tests_run": 44,
+      "passed": 29,
+      "failures": 15,
+      "errors": 0,
+      "skipped": 0,
+      "failure_events": 164,
+      "error_events": 0,
+      "successful": false,
+      "elapsed_seconds": 0.0272
+    }
+  ],
+  "after_local_with_optional_capture": [
+    {
+      "suite": "contracts",
+      "tests_run": 52,
+      "passed": 52,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failure_events": 0,
+      "error_events": 0,
+      "successful": true,
+      "elapsed_seconds": 0.0065
+    },
+    {
+      "suite": "security",
+      "tests_run": 44,
+      "passed": 44,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failure_events": 0,
+      "error_events": 0,
+      "successful": true,
+      "elapsed_seconds": 0.0164
+    }
+  ],
+  "portable_without_capture": [
+    {
+      "suite": "contracts",
+      "tests_run": 52,
+      "passed": 52,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failure_events": 0,
+      "error_events": 0,
+      "successful": true,
+      "elapsed_seconds": 0.0078
+    },
+    {
+      "suite": "security",
+      "tests_run": 44,
+      "passed": 43,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "failure_events": 0,
+      "error_events": 0,
+      "successful": true,
+      "elapsed_seconds": 0.0177
+    }
+  ],
+  "token_counter": "len: character-count proxy, not a model tokenizer",
+  "offline_tests": "outbound sockets and subprocess/OS commands denied; zero attempts recorded",
+  "real_capture_measurement": {
+    "raw_characters": 2045,
+    "projected_characters": 1520,
+    "character_budget": 1536,
+    "product_ids_preserved": 20,
+    "actions_preserved": 22,
+    "capture_bundled": false
+  },
+  "patch_validation": {
+    "patch": "product_ids_text_parser.patch",
+    "patch_sha256": "d8201a1fe8387755feea2a1601a66ad2a759cff1d4a741ad6057a4a05576b025",
+    "git_apply_check": true,
+    "git_apply_byte_identical_to_overlay": true,
+    "git_diff_whitespace_check": true,
+    "applied_source_sha256": {
+      "src/shopping_grpo/environment/actions.py": "06f91d3d69961c92588a34bcece3e824c065b85f7e619c40f26a98c75594edd5",
+      "src/shopping_grpo/environment/projection.py": "519a534c63ffcda33416f3af4998b6fa07dc1ce42f3e2e61793f8971b2bb2d9c"
+    }
+  },
+  "upstream_working_tree_clean": true,
+  "prepare_overlay_validation": {
+    "fresh_preparation_passed": true,
+    "tampered_patch_rejected": true,
+    "modified_existing_overlay_rejected": true,
+    "unsafe_paths_not_used": true
+  },
+  "bundled": [
+    "README.md",
+    ".gitignore",
+    "prepare_overlay.py",
+    "run_checks.py",
+    "product_ids_text_parser.patch",
+    "tests/test_text_product_parsing.py"
+  ],
+  "not_bundled": [
+    "upstream source checkout",
+    "overlay modules",
+    "product archives",
+    "datasets",
+    "models",
+    "raw observation captures",
+    "full execution logs"
+  ]
+}

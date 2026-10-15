@@ -1,0 +1,50 @@
+{
+  "kind": "canonical_v2_projection_on_captured_real_public_states",
+  "counter": "Python len characters, not a model tokenizer",
+  "public_states_checked": 5,
+  "results": [
+    {
+      "action": "reset",
+      "page_type": "search_home",
+      "raw_characters": 119,
+      "visible_characters": 119,
+      "product_ids_preserved": 0,
+      "footer_preserved": true
+    },
+    {
+      "action": "search[保温杯]",
+      "page_type": "search_results",
+      "raw_characters": 2663,
+      "visible_characters": 1524,
+      "product_ids_preserved": 20,
+      "footer_preserved": true
+    },
+    {
+      "action": "click[713372262998]",
+      "page_type": "product_detail",
+      "raw_characters": 432,
+      "visible_characters": 432,
+      "product_ids_preserved": 0,
+      "footer_preserved": true
+    },
+    {
+      "action": "click[冰河蓝]",
+      "page_type": "product_detail",
+      "raw_characters": 435,
+      "visible_characters": 435,
+      "product_ids_preserved": 0,
+      "footer_preserved": true
+    },
+    {
+      "action": "click[暮光粉]",
+      "page_type": "product_detail",
+      "raw_characters": 435,
+      "visible_characters": 435,
+      "product_ids_preserved": 0,
+      "footer_preserved": true
+    }
+  ],
+  "impossibly_small_budget_fails_closed": true,
+  "hidden_labels_used": false,
+  "model_or_api_calls": 0
+}

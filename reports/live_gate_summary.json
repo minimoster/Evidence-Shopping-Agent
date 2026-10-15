@@ -1,0 +1,41 @@
+{
+  "suite": "live_public_state_purchase_gate_smoke",
+  "reset_calls": 1,
+  "step_calls": 4,
+  "public_observations": 5,
+  "first_search_page_products": 20,
+  "total_search_results": 145,
+  "visible_option_axes": 1,
+  "variant_switch_exercised": true,
+  "purchases_submitted": 0,
+  "legacy_public_search_captured": true,
+  "model_calls": 0,
+  "external_api_calls": 0,
+  "external_network": "denied",
+  "blocked_external_action_attempts": [],
+  "success_rate": "not measured; no agent or policy evaluation",
+  "elapsed_seconds": 10.021,
+  "gate_decisions": [
+    false,
+    false,
+    false,
+    true,
+    false
+  ],
+  "gate_prices": [
+    null,
+    null,
+    null,
+    "1487.0",
+    "1492.0"
+  ],
+  "last_gate_reasons": [
+    "over_budget"
+  ],
+  "old_variant_decision_invalidated": true,
+  "requirements_source": "hand-authored explicit integration-test query; not original simulator task",
+  "public_export_omitted_fields": [
+    "gate_query",
+    "opened_asin"
+  ]
+}

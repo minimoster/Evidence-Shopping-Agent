@@ -1,0 +1,29 @@
+{
+  "source": "upstream",
+  "upstream_commit": "449bba2686a6ff07327cb3ea77e5f0f91ebb4239",
+  "loaded_sources": {
+    "actions": {
+      "path": "<LOCAL_WORKSPACE>/upstream/src/shopping_grpo/environment/actions.py",
+      "sha256": "4214855d986422ee54d04cadfbbca11377c85858cbbae44f85697ea51c998e51"
+    },
+    "projection": {
+      "path": "<LOCAL_WORKSPACE>/upstream/src/shopping_grpo/environment/projection.py",
+      "sha256": "b493b30aeca4a3791d8bf8c893a6769633eec1a66bb5ceaf9b222b3487fd8258"
+    }
+  },
+  "external_network_and_processes": "denied",
+  "blocked_action_attempts": [],
+  "suites": [
+    {
+      "suite": "contracts",
+      "tests_run": 52,
+      "passed": 48,
+      "failures": 3,
+      "errors": 1,
+      "skipped": 0,
+      "successful": false,
+      "elapsed_seconds": 0.0077
+    }
+  ],
+  "successful": false
+}

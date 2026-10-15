@@ -1,0 +1,188 @@
+diff --git a/src/shopping_grpo/environment/actions.py b/src/shopping_grpo/environment/actions.py
+index 24c3f4e..79f9abd 100644
+--- a/src/shopping_grpo/environment/actions.py
++++ b/src/shopping_grpo/environment/actions.py
+@@ -112,6 +112,12 @@ def action_guard_tool_message(tool_call, reason, observation):
+ 
+ def product_ids(observation):
+     """提取当前 observation 中可打开的商品 ID，并保持出现顺序。"""
++    # Legacy text is an entire SEP-delimited page, not a bag of numeric tokens.
++    # Keep canonical structured/projected rows on their existing parsing path.
++    if "[SEP]" in observation and not observation.startswith(
++        ("[SHOPPING_OBSERVATION_V2]\n", "[SHOPPING_OBSERVATION_PROJECTION]\n")
++    ):
++        return [asin for asin, _, _ in _legacy_search_products(observation)]
+     return list(
+         dict.fromkeys(
+             re.findall(
+@@ -122,6 +128,97 @@ def product_ids(observation):
+     )
+ 
+ 
++def _legacy_search_products(observation):
++    """Parse only complete legacy result pages; ambiguity grants no product IDs.
++
++    The fixed result template emits a header, optional query/navigation, then
++    ID/title/price triplets. A literal SEP in content is ambiguous and must not
++    make the parser resynchronize at a later number. The terminal footer must
++    independently identify exactly the same unique products.
++    """
++    if observation.startswith(
++        ("[SHOPPING_OBSERVATION_V2]\n", "[SHOPPING_OBSERVATION_PROJECTION]\n")
++    ):
++        return []
++    if any(
++        observation.count(marker) != 1
++        for marker in ("搜索功能是否可用:", "可点击的按钮:")
++    ):
++        return []
++    footer = re.search(
++        r"\n\n搜索功能是否可用: (?:True|False)\n{1,2}"
++        r"可点击的按钮: (\[[^\n]*\])\n?\Z",
++        observation,
++    )
++    if footer is None:
++        return []
++    try:
++        buttons = json.loads(footer.group(1))
++    except json.JSONDecodeError:
++        return []
++    if not isinstance(buttons, list) or any(not isinstance(x, str) for x in buttons):
++        return []
++    if len(buttons) != len(set(buttons)):
++        return []
++    navigation = {"back to search", "< prev", "next >"}
++    if "back to search" not in {button.casefold() for button in buttons}:
++        return []
++    if any(
++        button.casefold() not in navigation and not re.fullmatch(r"[0-9]{8,12}", button)
++        for button in buttons
++    ):
++        return []
++
++    segments = [segment.strip() for segment in observation[: footer.start()].split("[SEP]")]
++    if (
++        len(segments) < 7
++        or segments[0] != "Instruction:"
++        or not segments[1]
++        or segments[2] != "Back to Search"
++        or not re.fullmatch(
++            r"Page [1-9][0-9]*(?: of [1-9][0-9]*)? \(Total results: [0-9]+\)",
++            segments[3],
++        )
++    ):
++        return []
++    index = 4
++    if segments[index].startswith("Query: "):
++        if " | Normalized query: " not in segments[index]:
++            return []
++        index += 1
++    visible_navigation = ["back to search"]
++    if index < len(segments) and segments[index] == "< Prev":
++        visible_navigation.append("< prev")
++        index += 1
++    if index < len(segments) and segments[index] == "Next >":
++        visible_navigation.append("next >")
++        index += 1
++    if set(visible_navigation) != {
++        button.casefold() for button in buttons if button.casefold() in navigation
++    }:
++        return []
++    if index == len(segments) or (len(segments) - index) % 3:
++        return []
++    products = []
++    for offset in range(index, len(segments), 3):
++        asin, title, price = segments[offset : offset + 3]
++        if (
++            not re.fullmatch(r"[0-9]{8,12}", asin)
++            or not title
++            or "\n" in title
++            or "\r" in title
++            or not re.fullmatch(r"[0-9]+(?:\.[0-9]+)?(?: to [0-9]+(?:\.[0-9]+)?)?", price)
++        ):
++            return []
++        products.append((asin, title, price))
++    asins = [asin for asin, _, _ in products]
++    if len(asins) != len(set(asins)):
++        return []
++    if set(asins) != {button for button in buttons if button.casefold() not in navigation}:
++        return []
++    return products
++
++
+ def clickable_buttons(observation):
+     """读取 observation footer 中当前页面实际可点击的按钮。"""
+     match = re.search(r"可点击的按钮:\s*(\[[^\n]*\])", observation)
+diff --git a/src/shopping_grpo/environment/projection.py b/src/shopping_grpo/environment/projection.py
+index 551a8b4..5ce951c 100644
+--- a/src/shopping_grpo/environment/projection.py
++++ b/src/shopping_grpo/environment/projection.py
+@@ -11,7 +11,11 @@ from dataclasses import asdict, dataclass
+ import json
+ import re
+ 
+-from shopping_grpo.environment.actions import clickable_buttons, product_ids
++from shopping_grpo.environment.actions import (
++    _legacy_search_products,
++    clickable_buttons,
++    product_ids,
++)
+ from shopping_grpo.environment.product_id import PRODUCT_ID_CAPTURE, is_product_id
+ 
+ 
+@@ -121,11 +125,11 @@ def project_observation(
+         raise ObservationProjectionError("critical search/button footer was not preserved")
+     if page_type != "search_results" and set(visible_buttons) != set(raw_buttons):
+         raise ObservationProjectionError("non-search projection changed actionable buttons")
++    if set(raw_asins) != set(visible_asins):
++        raise ObservationProjectionError(
++            "projection must preserve every product on the current environment page"
++        )
+     if page_type == "search_results":
+-        if set(raw_asins) != set(visible_asins):
+-            raise ObservationProjectionError(
+-                "search projection must preserve every product on the current environment page"
+-            )
+         visible_product_targets = {
+             button for button in visible_buttons if is_product_id(button)
+         }
+@@ -153,7 +157,7 @@ def project_observation(
+ 
+ def _page_type(observation):
+     if (
+-        "[SHOPPING_OBSERVATION_V2]" in observation
++        observation.startswith("[SHOPPING_OBSERVATION_V2]\n")
+         and "page_type: search_results" in observation
+     ):
+         return "search_results"
+@@ -178,7 +182,7 @@ def _project_search_results(
+     search_top_k,
+ ):
+     """压缩搜索结果标题，但保留当前页的每一个候选 ASIN。"""
+-    if "[SHOPPING_OBSERVATION_V2]" in observation:
++    if observation.startswith("[SHOPPING_OBSERVATION_V2]\n"):
+         return _project_structured_search_results(
+             observation,
+             count_tokens=count_tokens,
+@@ -187,19 +191,9 @@ def _project_search_results(
+     body, footer = _split_footer(observation)
+     segments = [segment.strip() for segment in body.split("[SEP]")]
+     page = next((segment for segment in segments if re.fullmatch(r"Page \d+.*", segment)), "Page unknown")
+-    products = []
+-    for index, segment in enumerate(segments):
+-        if not is_product_id(segment):
+-            continue
+-        title = segments[index + 1] if index + 1 < len(segments) else ""
+-        price = segments[index + 2] if index + 2 < len(segments) else ""
+-        products.append((segment, title, price))
++    products = _legacy_search_products(observation)
+     if not products:
+-        return _project_generic_page(
+-            observation,
+-            count_tokens=count_tokens,
+-            token_budget=token_budget,
+-        )
++        raise ObservationProjectionError("legacy search observation has no valid product rows")
+     if len(products) > search_top_k:
+         raise ObservationProjectionError(
+             f"raw search page has {len(products)} products, above configured "

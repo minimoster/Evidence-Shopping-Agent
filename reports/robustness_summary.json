@@ -1,0 +1,11 @@
+{
+  "kind": "deterministic_synthetic_JSON_stress_not_agent_evaluation",
+  "seed": 20261015,
+  "observation_cases": 3000,
+  "observation_verifications": 6000,
+  "query_cases": 2000,
+  "uncaught_exceptions": 0,
+  "determinism_mismatches": 0,
+  "span_mismatches": 0,
+  "model_or_api_calls": 0
+}

@@ -1,0 +1,44 @@
+{
+  "source": "overlay",
+  "upstream_commit": "449bba2686a6ff07327cb3ea77e5f0f91ebb4239",
+  "loaded_sources": {
+    "actions": {
+      "path": "<LOCAL_WORKSPACE>/text_parser_fix/overlay/src/shopping_grpo/environment/actions.py",
+      "sha256": "06f91d3d69961c92588a34bcece3e824c065b85f7e619c40f26a98c75594edd5"
+    },
+    "projection": {
+      "path": "<LOCAL_WORKSPACE>/text_parser_fix/overlay/src/shopping_grpo/environment/projection.py",
+      "sha256": "519a534c63ffcda33416f3af4998b6fa07dc1ce42f3e2e61793f8971b2bb2d9c"
+    }
+  },
+  "external_network_and_processes": "denied",
+  "blocked_action_attempts": [],
+  "token_counter": "len: character-count proxy, not a model tokenizer",
+  "suites": [
+    {
+      "suite": "contracts",
+      "tests_run": 52,
+      "passed": 52,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failure_events": 0,
+      "error_events": 0,
+      "successful": true,
+      "elapsed_seconds": 0.0074
+    },
+    {
+      "suite": "security",
+      "tests_run": 44,
+      "passed": 44,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failure_events": 0,
+      "error_events": 0,
+      "successful": true,
+      "elapsed_seconds": 0.0174
+    }
+  ],
+  "successful": true
+}
