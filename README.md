@@ -3,12 +3,34 @@
 完整上游代码/文档整合，加上独立的需求结构化、可见证据核验和离线脚本演示。
 **12 个数据文件未内嵌，这不是整个上游 224 文件的完整镜像，也不是已训练完成的 LLM/RL Agent。**
 
+## 开发评测增量（2026-10-16）
+
+新增 `evaluation/`：复用固定上游 rollout 和环境 adapter，提供 A 基线 / B
+需求编译 / C 购买证据闸门的同预算接口、完整任务清单、失败分母、配对汇总、
+重放与请求计量。拒绝购买后可以在原预算内修正，不重新赠送步骤。
+
+可直接运行原创合成场景的脚本基线，无 API、网络、数据下载或 GPU：
+
+    python -m evaluation.offline_baseline --output-dir results/offline-baseline
+
+这是 scripted/mock 契约比较，不是 gpt-6.1-sol 或真实 ShopSimulator 的性能评测。
+已准备的真实开发集是固定 20 题且与 Final-200 分离；数据与原始轨迹不再分发。
+自然需求诊断保留原文位置、硬/软条件、歧义与未识别片段，不将诊断结果冒充
+购买授权。安全闸门仍按原始 query 重新解析，复杂自由描述仍会保守拒绝。
+
+真实 60 次任务-组实验尚未运行。完整执行入口保持关闭，等待需求语义/证据规则
+完善及安全的人工密钥探测。仅支持指定模型 `gpt-6.1-sol`，不自动替换模型。
+API 路径是待验证候选，token 数不等于已确认账单。详见
+[评测状态](REAL_EVALUATION_STATUS.md)、[离线比较与失败分析](BASELINE_ANALYSIS.md)
+及 [无回显探测](PROBE_README.md)。
+
 ## 内容与归属
 
 - upstream_reference/：上游 shopping-grpo-longhorizon 固定提交的 212 个代码、
   文档、配置、训练/评测脚本、依赖锁及 5 个图片资源。
 - prototype/：新增 query-only 窄语法规则、ASIN/variant/revision 绑定的购买证据核验。
 - shopping_demo/：新增可运行标准库离线演示，使用显式 ScriptedPolicy 和原创合成商品。
+- evaluation/：新增开发评测工程、查询诊断和明确标记的脚本基线。
 - text_parser_fix/：新增最小修复 patch 与安全回归，原始源快照不应用该修复。
 - UPSTREAM_MANIFEST.json：224 个原跟踪文件逐项映射、mode、大小、固定来源和 hash；
   212 保留、12 数据项排除。211 个保留文件字节不变，README 仅去掉 3 个

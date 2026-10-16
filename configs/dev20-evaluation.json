@@ -1,0 +1,26 @@
+{
+  "schema_version": "evidence-dev-plan-v1",
+  "execution_enabled": false,
+  "baseline_commit": "dcd16ea9de6510eeef2906ee5b38649786c7d6b5",
+  "upstream_commit": "449bba2686a6ff07327cb3ea77e5f0f91ebb4239",
+  "split_manifest": "runtime/dev20/manifest.json",
+  "tasks": 20,
+  "seed": 20261016,
+  "arms": [
+    "A",
+    "B",
+    "C"
+  ],
+  "arm_order": "rotate A/B/C by task index; fresh environment lease for every arm",
+  "attempts_per_task_per_arm": 1,
+  "max_steps": 30,
+  "max_model_calls": 30,
+  "max_completion_tokens": 512,
+  "temperature": 0,
+  "provider": "relay_candidate_not_verified",
+  "model": "gpt-6.1-sol",
+  "total_budget_usd": null,
+  "model_endpoint": "https://st.walkcoding.top/v1/chat/completions",
+  "simulator_endpoint": null,
+  "notes": "Execution remains disabled pending semantic-compiler review and a secure manual credential probe. 60 trajectories maximum, 30 steps/calls each plus two probe requests, no automatic retries. Unknown cost is not zero or verified billing. In-process pinned simulator; seed fixes split and order, not provider determinism."
+}
