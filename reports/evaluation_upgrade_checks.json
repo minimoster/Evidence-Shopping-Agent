@@ -2,7 +2,7 @@
   "schema_version": "source-upgrade-verification-v1",
   "date_utc": "2026-10-16",
   "python_version": "3.12.14",
-  "scope": "Post-review final source regression; no real model or simulator execution.",
+  "scope": "Post-review local regression, plus clean source-only publication reproduction; no real model or simulator execution.",
   "suites": [
     {
       "suite": "evaluation",
@@ -161,5 +161,39 @@
   ],
   "total_skipped_test_methods": 1,
   "total_skipped_test_classes": 1,
-  "unittest_counting_note": "tests_run includes individually skipped tests but excludes setUpClass skips; passed counts actual ok outcomes."
+  "unittest_counting_note": "tests_run includes individually skipped tests but excludes setUpClass skips; passed counts actual ok outcomes.",
+  "local_only_inputs": "Three provenance tests used an existing ignored ID-only development split, not raw queries or product data.",
+  "clean_source_only_reproduction": {
+    "suites": {
+      "evaluation": {
+        "reported_tests_run": 182,
+        "actual_passed": 178,
+        "skipped_test_methods": 4,
+        "skipped_test_classes": 0
+      },
+      "prototype": {
+        "reported_tests_run": 68,
+        "actual_passed": 68,
+        "skipped_test_methods": 0,
+        "skipped_test_classes": 1
+      },
+      "demo": {
+        "reported_tests_run": 38,
+        "actual_passed": 38,
+        "skipped_test_methods": 0,
+        "skipped_test_classes": 0
+      },
+      "integration": {
+        "reported_tests_run": 7,
+        "actual_passed": 7,
+        "skipped_test_methods": 0,
+        "skipped_test_classes": 0
+      }
+    },
+    "public_offline_artifacts_identical": true,
+    "upstream_verified": true,
+    "private_runtime_or_data_copied": false,
+    "total_passed": 291,
+    "additional_skips": "Three development-split provenance tests explicitly skip because the ignored private ID-only split is not published."
+  }
 }

@@ -144,4 +144,8 @@ python -m unittest discover -s tests_evaluation -v
 没有加入完整商品数据、私有日志、凭据、模型权重或训练产物。
 `PUBLICATION_MANIFEST.json` 和 `SHA256SUMS` 记录最终源文件内容；
 `reports/evaluation_upgrade_checks.json` 记录本次本地回归范围与限制。
+最终本地回归实际通过 294 个测试，另跳过 1 个测试方法与 1 个集成测试类。
+仅从发布白名单重建的干净副本通过 291 个测试，跳过 4 个测试方法与 1 个集成类；
+新增的 3 个 skip 是未发布 ID-only 开发集清单的来源核验，不伪装成通过。
+干净副本的三份离线公开汇总与本地结果完全一致，无需私有数据或 runtime。
 GitHub 未配置工作流时，不能把“没有 CI 检查”说成“CI 通过”。
