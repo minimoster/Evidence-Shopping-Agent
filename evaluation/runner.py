@@ -24,6 +24,7 @@ from shopping_grpo.evaluation.metrics import compute_deterministic_metrics
 from prototype import EvidenceLedger, verify_purchase
 from shopping_demo.core import _check_public_tree
 from .query_analysis import analyze_query
+from .intent_proposals import OfflineProposal, inspect_intent
 
 
 @dataclass(frozen=True)
@@ -33,12 +34,17 @@ class RunConfig:
     max_model_calls: int = 30
     execution_kind: str = "mocked_smoke"
     seed: int = 20261016
+    proposal_mode: str = "disabled"
 
     def __post_init__(self):
         if self.arm not in {"A", "B", "C"}:
             raise ValueError("arm must be A, B or C")
         if self.execution_kind not in {"mocked_smoke", "real_model_real_simulator"}:
             raise ValueError("invalid execution kind")
+        if self.proposal_mode not in {"disabled", "offline_fixture"}:
+            raise ValueError("real intent proposal providers are not implemented or enabled")
+        if self.proposal_mode != "disabled" and self.execution_kind != "mocked_smoke":
+            raise ValueError("proposal fixtures are restricted to mocked smoke tests")
         if type(self.max_steps) is not int or type(self.max_model_calls) is not int or min(self.max_steps, self.max_model_calls) < 1:
             raise ValueError("budgets must be positive integers")
 
@@ -48,8 +54,10 @@ class BudgetExceeded(RuntimeError):
 
 
 class EvaluationEnvironment:
-    def __init__(self, inner, config):
+    def __init__(self, inner, config, proposal_fixture=None):
         self.inner, self.config = inner, config
+        self.proposal_fixture = proposal_fixture
+        self.intent_boundary = None
         self.ledger = EvidenceLedger()
         self.compilation = None
         self.query_analysis = None
@@ -78,6 +86,7 @@ class EvaluationEnvironment:
             raise ValueError("reset must provide original user instruction")
         self.query_analysis = analyze_query(query)
         self.compilation = self.query_analysis.canonical
+        self.intent_boundary = inspect_intent(query, mode=self.config.proposal_mode, fixture=self.proposal_fixture)
         return self._public(initial, reset=True)
 
     def step(self, action):
@@ -146,13 +155,16 @@ class BudgetedClient:
 
 
 def run_task(task_id, client, *, config=RunConfig(), env_factory=None,
-             base_url="http://127.0.0.1:5700", real_scope=None):
+             base_url="http://127.0.0.1:5700", real_scope=None, proposal_fixture=None):
     """Offline-testable API. Real execution needs a separately approved client.
 
     Never accepts task prompts, gold, TaskFacts, or annotations. Queries come from
     the simulator's original user instruction. No default environment is created. Injected Python clients/factories are trusted code,
     not a network sandbox; their labels cannot prove they are offline.
     """
+    if ((config.proposal_mode == "disabled" and proposal_fixture is not None)
+            or (config.proposal_mode == "offline_fixture" and type(proposal_fixture) is not OfflineProposal)):
+        raise ValueError("proposal fixture and explicit offline mode must agree")
     if getattr(client, "execution_kind", None) != config.execution_kind:
         raise ValueError("client must explicitly attest matching execution kind")
     if config.execution_kind != "mocked_smoke":
@@ -170,7 +182,7 @@ def run_task(task_id, client, *, config=RunConfig(), env_factory=None,
             raise ValueError("verified pinned in-process simulator required; no marketplace adapters")
     if env_factory is None or env_factory is ShopAgentEnv:
         raise ValueError("mocked_smoke requires an explicitly injected fixture environment factory")
-    env = EvaluationEnvironment(env_factory(base_url=base_url), config)
+    env = EvaluationEnvironment(env_factory(base_url=base_url), config, proposal_fixture)
     bounded = BudgetedClient(client, env, config)
     started = time.monotonic()
     trajectory = collect_for_task({"task_id": int(task_id)}, bounded,
@@ -206,6 +218,7 @@ def run_task(task_id, client, *, config=RunConfig(), env_factory=None,
         "wrong_purchase": wrong, "parser": env.compilation.to_dict() if env.compilation else None,
         "parser_ready": bool(env.compilation and env.compilation.ready),
         "query_analysis": env.query_analysis.to_dict() if env.query_analysis else None,
+        "intent_boundary": env.intent_boundary,
         "gate_events": env.gates, "gate_false_rejection": None,
         "gate_false_rejection_note": "Requires independent post-run candidate adjudication; never inferred from later success.",
         "dispatched_steps": len(env.dispatched_actions),

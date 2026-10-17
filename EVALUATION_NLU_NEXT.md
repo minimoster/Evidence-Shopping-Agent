@@ -1,5 +1,12 @@
 # Natural-language evaluation boundary and next interface
 
+**Latest boundary integration:** [INTENT_PROPOSAL_BOUNDARY.md](INTENT_PROPOSAL_BOUNDARY.md)
+documents the separate untrusted proposal schema, source validation and semantic
+acceptance states now recorded by the existing runner/readiness flow. Real model
+proposals remain disabled. [The original dev20 cloud check](reports/dev20_880e05e_coverage.md)
+at `880e05e` found both parsers ready on 0/20; general natural-language coverage is
+still unresolved. Valid schema/spans are not semantic proof or purchase authority.
+
 **2026-10-17 update:** the bounded opt-in proposal/acceptance/evidence interface is
 now implemented separately in `evaluation.semantic_constraints`; see
 [EVALUATION_SEMANTICS.md](EVALUATION_SEMANTICS.md) for its exact grammar, tests and

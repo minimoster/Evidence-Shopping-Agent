@@ -14,6 +14,8 @@ MODULES = (
     "tests_evaluation.test_natural_constraints", "tests_evaluation.test_query_analysis_runner",
     "tests_evaluation.test_runner", "tests_evaluation.test_semantic_constraints",
     "tests_evaluation.test_semantic_readiness",
+    "tests_evaluation.test_intent_proposals",
+    "tests_evaluation.test_experiment", "tests_evaluation.test_real_cli",
 )
 
 

@@ -1,5 +1,25 @@
 # Relay preparation and actual validation status
 
+## Latest: cloud coverage and proposal-boundary integration
+
+Recovered original dev20 public queries were checked in the cloud at exact commit
+`880e05e16477248dd7581303582d387132959062`: canonical and bounded readiness are both
+**0/20**. Diagnostics: 0 fully supported, 3 partially supported, 11 needing
+clarification, 6 unsupported; all 20 contain unsupported clauses. This is
+development interface coverage, not model success or a solvability judgment.
+[Relayed cloud report and per-task provenance](reports/dev20_880e05e_coverage.md).
+The Windows implementation task did not rerun the original query package.
+
+The subsequent [three-layer boundary](INTENT_PROPOSAL_BOUNDARY.md) is integrated
+into runner/readiness diagnostics with model proposals disabled by default.
+Source-valid proposals remain semantically unverified unless the existing bounded
+rules independently accept them. The original purchase gate remains unchanged.
+188 lightweight synthetic/mocked tests passed, including 19 new cases. No actual
+proposal model or NLU improvement was tested; the 60-run experiment stays disabled.
+Earlier missing-local-assets records below describe the Windows checkpoint,
+superseded for query coverage by the cloud check. Actual candidate evidence remains
+unverified.
+
 ## Engineering update: 2026-10-17
 
 The opt-in bounded semantic interface now has deterministic proposal acceptance,
@@ -10,7 +30,7 @@ or enable paid execution. See [EVALUATION_SEMANTICS.md](EVALUATION_SEMANTICS.md)
 152 selected lightweight tests passed (32 new, 120 existing; zero failures or
 skips). These are synthetic rules/mocked integration, not real-model results.
 The reset-only dev20 adapter is implemented, but this clean checkout lacks the
-existing ignored split/catalog/index. New semantic readiness is **unmeasured**;
+existing ignored split/catalog/index. At that checkpoint readiness was **unmeasured**;
 the earlier canonical **0/20** remains the last actual measurement. It is parser
 readiness, not a model score or a finding that all 20 tasks are unsolvable.
 No tasks were removed, no budget ceilings inferred and no product evidence made

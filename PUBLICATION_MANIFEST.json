@@ -37,9 +37,9 @@
     {
       "path": "EVALUATION_NLU_NEXT.md",
       "mode": "100644",
-      "bytes": 8778,
-      "sha256": "eb62a9f3a456ce2f8cd2b89250d67cde71d1dd8d8f203316053767c8cb1b1a29",
-      "git_blob_sha1": "027e5fdea72af04c52586852bebe79121314c1a0",
+      "bytes": 9295,
+      "sha256": "a80a20c414c080caa578cb49bbd0b5534aa1b5a882609f5e8917f8c41d9abccd",
+      "git_blob_sha1": "af1ea1a979fa17be616bb0deac474eae1f5af52d",
       "binary": false
     },
     {
@@ -53,9 +53,9 @@
     {
       "path": "EVALUATION_SEMANTICS.md",
       "mode": "100644",
-      "bytes": 10289,
-      "sha256": "88ae4a3f2836e49a44893120835a9d2dbe476cf73efdf1ddf5bcd4f36d2331aa",
-      "git_blob_sha1": "70c60762d6103825d3c750017a3744e55d337f6d",
+      "bytes": 10571,
+      "sha256": "0ed2b88488969e1a70b76ac1c2d470889dcf358e0528c5e53bef9e54f83bf219",
+      "git_blob_sha1": "13fc16a9df44678a6f059111e3b4c1320cf663aa",
       "binary": false
     },
     {
@@ -64,6 +64,14 @@
       "bytes": 623,
       "sha256": "fa868f51eced25b9a83b0f13e418cbf7c783c31dc9cc84a61f96ba9b16fe971c",
       "git_blob_sha1": "0cfb86c552d8a7e8f12962fa9436378eacf8ff98",
+      "binary": false
+    },
+    {
+      "path": "INTENT_PROPOSAL_BOUNDARY.md",
+      "mode": "100644",
+      "bytes": 6755,
+      "sha256": "97226f6c0e03ba72fd96e5e5a244d6f7695e37d5b5f86c337370bd0f712b7ba0",
+      "git_blob_sha1": "fce118e29cf1b833bf80df8ba0cfd7fe52391c13",
       "binary": false
     },
     {
@@ -77,17 +85,17 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "bytes": 7443,
-      "sha256": "3acc6dee9e3e4da264df1f161498da960784daa29a8de9b6061cae280d63038a",
-      "git_blob_sha1": "907f7a6043b6cc963817eb02c245d377182ca162",
+      "bytes": 7952,
+      "sha256": "448cd7eb935c6d2e36b894b494cd258caa6cd06d998a08d06301881d19e4c7ac",
+      "git_blob_sha1": "460d77f37e1561de96d8a3e774033174e6e738f8",
       "binary": false
     },
     {
       "path": "REAL_EVALUATION_STATUS.md",
       "mode": "100644",
-      "bytes": 5661,
-      "sha256": "8867c983767ae60b458485f47232905079a34a7301f786868c5587cc8650a8d9",
-      "git_blob_sha1": "5a39ef7dd6eea5ee78784bddcaaf54019ff1878f",
+      "bytes": 6937,
+      "sha256": "f12c94c55b1d961a19b0f3ab69801c744a36bc80e21e3fb1c587e1f3207d516b",
+      "git_blob_sha1": "b3b28daba129fed3bc67526f0506e667dbe02039",
       "binary": false
     },
     {
@@ -203,6 +211,14 @@
       "binary": false
     },
     {
+      "path": "evaluation/intent_proposals.py",
+      "mode": "100644",
+      "bytes": 11208,
+      "sha256": "39ee7dfc057eba831d4c26250d25e3e6b6e1cddf58094ef2205014088d280454",
+      "git_blob_sha1": "619e1c2b57b0f9d9aa572dcb2e20c3fd09488f21",
+      "binary": false
+    },
+    {
       "path": "evaluation/local_simulator.py",
       "mode": "100644",
       "bytes": 18382,
@@ -269,17 +285,17 @@
     {
       "path": "evaluation/runner.py",
       "mode": "100644",
-      "bytes": 11799,
-      "sha256": "45790e0cd8db3274199812dc56fe221bed7c6c9549a0544bffd23afa30151f31",
-      "git_blob_sha1": "e25e4e5d15f931eabde685261f129ea7ad720408",
+      "bytes": 12819,
+      "sha256": "75677b1bebf7fbe2af5079b4d42ad59b4b8aac0df349a1ad51ffc61340d4b4e5",
+      "git_blob_sha1": "ff176bdc8ff2519b96e536719b501f1e4ca3e933",
       "binary": false
     },
     {
       "path": "evaluation/semantic_checks.py",
       "mode": "100644",
-      "bytes": 2286,
-      "sha256": "f12efa3a603d3ed5ed34578705a225a4c7156e2bcc29163961f10a2ccab88290",
-      "git_blob_sha1": "60226f1066eb3bb138c20ad23925fd8a9f65f9eb",
+      "bytes": 2406,
+      "sha256": "0c5fddde534a39c16ae3a0539527182c4023198b860c60e4f3ceb68a20bbc3ab",
+      "git_blob_sha1": "1a1485a95cc780778134c1b44cc8f95285ca238b",
       "binary": false
     },
     {
@@ -293,9 +309,9 @@
     {
       "path": "evaluation/semantic_readiness.py",
       "mode": "100644",
-      "bytes": 5740,
-      "sha256": "6756afee98749758c4982d7ba3c99a64c2d73950272f9680190936e50f0b6a17",
-      "git_blob_sha1": "b24465b4cd39aa3751228be5f5468ab782b0fa2b",
+      "bytes": 5839,
+      "sha256": "0cb299242c0ca4c612a5dcb1ec8a6599dd384209eed8bca1a53c8c5c449ffae1",
+      "git_blob_sha1": "404bdea2fbf16c45f7c0f4599914d2ef55703c0f",
       "binary": false
     },
     {
@@ -451,6 +467,14 @@
       "binary": false
     },
     {
+      "path": "reports/dev20_880e05e_coverage.md",
+      "mode": "100644",
+      "bytes": 4091,
+      "sha256": "20e3e2bbee64e0f31c9b4149c0ac195c8acb36d78897fa9c577ec0a83be7ca9f",
+      "git_blob_sha1": "69cef04cebd3a6b6a33dc3f2e7b7b19626e4638a",
+      "binary": false
+    },
+    {
       "path": "reports/evaluation_upgrade_checks.json",
       "mode": "100644",
       "bytes": 12837,
@@ -464,6 +488,14 @@
       "bytes": 1881,
       "sha256": "dc9b6c5bbdab633ba499f28bfc7c28a37fc46e655d71d125ffad61716fef36f6",
       "git_blob_sha1": "490d691cd4269015b3894d1350408272cd7a603b",
+      "binary": false
+    },
+    {
+      "path": "reports/intent_boundary_checks.json",
+      "mode": "100644",
+      "bytes": 914,
+      "sha256": "79de33e00a389191fd33906494db5617fa957ef8db2d54be985656a31b844c54",
+      "git_blob_sha1": "d241bdaeb206b585418fb4dbe24a5bcf3188a29c",
       "binary": false
     },
     {
@@ -680,6 +712,14 @@
       "bytes": 6996,
       "sha256": "29f3441751c9825b891bc5fe8cad1b21d4975ded0f35d673b880ada4c1e2f6d1",
       "git_blob_sha1": "2d07e0a9e921d1578d06806bb2bc75a95a3c906d",
+      "binary": false
+    },
+    {
+      "path": "tests_evaluation/test_intent_proposals.py",
+      "mode": "100644",
+      "bytes": 11443,
+      "sha256": "1b82a137e0c1a40232313123cfa7cfdb52d975d9b52985e8d944e001f1952a79",
+      "git_blob_sha1": "c14d09cc64d75ca43f1851c16d17dcbcfa0c81eb",
       "binary": false
     },
     {
@@ -3207,8 +3247,8 @@
       "binary": false
     }
   ],
-  "total_listed_files": 321,
-  "total_listed_bytes": 6832816,
+  "total_listed_files": 326,
+  "total_listed_bytes": 6871050,
   "largest_file": {
     "path": "upstream_reference/uv.lock",
     "mode": "100644",
@@ -3221,12 +3261,12 @@
     "upstream_source_modified": false
   },
   "binary_files": 5,
-  "text_files": 316,
+  "text_files": 321,
   "upstream_source_files": 212,
   "excluded_source_dataset_files": 12,
   "source_sanitized_files": [
     "upstream_reference/README.md"
   ],
   "note": "Excludes itself and root SHA256SUMS. Hashes are canonical Git-index blob bytes, independent of checkout CRLF conversion. Upstream provenance is unchanged.",
-  "updated_for": "bounded-semantics-v1"
+  "updated_for": "untrusted-intent-proposal-v1"
 }

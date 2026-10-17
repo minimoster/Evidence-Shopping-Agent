@@ -14,6 +14,7 @@ from pathlib import Path
 
 from .constraints import compile_query
 from .semantic_constraints import VERSION, accept_semantics, propose_constraints
+from .intent_proposals import inspect_intent
 
 
 def summarize_query(query: str) -> dict:
@@ -26,6 +27,7 @@ def summarize_query(query: str) -> dict:
             "bounded_semantics_ready": accepted.ready,
             "issues": list(accepted.issues), "clause_status_counts": dict(statuses),
             "hard_predicate_count": sum(c["node"] is not None and c["node"]["strength"] == "hard" for c in proposal["clauses"]),
+            "intent_boundary": inspect_intent(query),
             "product_evidence_status": "not_collected", "task_solvability": "not_assessed"}
 
 

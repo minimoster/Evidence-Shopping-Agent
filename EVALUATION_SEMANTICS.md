@@ -4,9 +4,13 @@ This is an opt-in engineering interface, not general shopping NLU or a released
 model experiment. It extends the earlier audit-only work with deterministic
 semantic acceptance and predicate-specific public-evidence checks. The existing
 canonical parser, A/B/C runner intervention and disabled real CLI remain frozen.
-No development query was available in this clean checkout, so the new interface's
-dev20 readiness is **unmeasured**, not 0/20 and not the synthetic test pass rate.
-The historical canonical result remains 0/20 at main `e930882`.
+No development query was available in the initial clean Windows checkout, so
+readiness was initially unmeasured there. A later cloud check of the original
+queries at `880e05e` measured **0/20** for both bounded and canonical interfaces;
+see [the sourced cloud record](reports/dev20_880e05e_coverage.md). It was not a
+Windows rerun or a model score. The subsequent
+[proposal/source/semantic boundary](INTENT_PROPOSAL_BOUNDARY.md) adds diagnostics,
+not natural-language understanding or a changed purchase gate.
 
 ## Implemented boundary
 
