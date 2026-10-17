@@ -1,5 +1,12 @@
 # Natural-language evaluation boundary and next interface
 
+**2026-10-17 update:** the bounded opt-in proposal/acceptance/evidence interface is
+now implemented separately in `evaluation.semantic_constraints`; see
+[EVALUATION_SEMANTICS.md](EVALUATION_SEMANTICS.md) for its exact grammar, tests and
+remaining data blockers. The canonical parser and A/B/C execution contract below
+remain unchanged. The proposed design below records the wider roadmap; nested
+logic, general NLU and real-model evaluation are still not implemented/released.
+
 ## Current status
 
 The implemented compiler is `query-only-audit-v3-resource-bounded-not-general-NLU`. It is still a

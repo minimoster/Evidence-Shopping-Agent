@@ -37,9 +37,9 @@
     {
       "path": "EVALUATION_NLU_NEXT.md",
       "mode": "100644",
-      "bytes": 8300,
-      "sha256": "f3252e2cabd0be19ccef85664d499a0be5080d192cce6ec5a6afddadedb26ca2",
-      "git_blob_sha1": "7ae5825d2b79679945faa3cf7d9f89ec11bfc3b5",
+      "bytes": 8778,
+      "sha256": "eb62a9f3a456ce2f8cd2b89250d67cde71d1dd8d8f203316053767c8cb1b1a29",
+      "git_blob_sha1": "027e5fdea72af04c52586852bebe79121314c1a0",
       "binary": false
     },
     {
@@ -48,6 +48,14 @@
       "bytes": 12089,
       "sha256": "f6b5d07824c94eeaa1ba9ac6ef90a6b4d1ddec99350365a327355a27e401588c",
       "git_blob_sha1": "1726974a130c24c327792da5e577336eac77fd87",
+      "binary": false
+    },
+    {
+      "path": "EVALUATION_SEMANTICS.md",
+      "mode": "100644",
+      "bytes": 10289,
+      "sha256": "88ae4a3f2836e49a44893120835a9d2dbe476cf73efdf1ddf5bcd4f36d2331aa",
+      "git_blob_sha1": "70c60762d6103825d3c750017a3744e55d337f6d",
       "binary": false
     },
     {
@@ -69,17 +77,17 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "bytes": 6878,
-      "sha256": "1c2a7cdc40552224ded65f1f139ee8f911ff6e41a6428630aaf2ba33987c953c",
-      "git_blob_sha1": "11ef8b2239a335d427e92a044f05568eb1bfb39b",
+      "bytes": 7443,
+      "sha256": "3acc6dee9e3e4da264df1f161498da960784daa29a8de9b6061cae280d63038a",
+      "git_blob_sha1": "907f7a6043b6cc963817eb02c245d377182ca162",
       "binary": false
     },
     {
       "path": "REAL_EVALUATION_STATUS.md",
       "mode": "100644",
-      "bytes": 4545,
-      "sha256": "3e1ed1726e56141a8cb27b685b872fae3b872536d4bf1f733a2f55aeff9f2db3",
-      "git_blob_sha1": "4c7c0f0dbdd3f890f5b327a1cea5981784cceef5",
+      "bytes": 5661,
+      "sha256": "8867c983767ae60b458485f47232905079a34a7301f786868c5587cc8650a8d9",
+      "git_blob_sha1": "5a39ef7dd6eea5ee78784bddcaaf54019ff1878f",
       "binary": false
     },
     {
@@ -267,6 +275,30 @@
       "binary": false
     },
     {
+      "path": "evaluation/semantic_checks.py",
+      "mode": "100644",
+      "bytes": 2286,
+      "sha256": "f12efa3a603d3ed5ed34578705a225a4c7156e2bcc29163961f10a2ccab88290",
+      "git_blob_sha1": "60226f1066eb3bb138c20ad23925fd8a9f65f9eb",
+      "binary": false
+    },
+    {
+      "path": "evaluation/semantic_constraints.py",
+      "mode": "100644",
+      "bytes": 17060,
+      "sha256": "ffe5ddeeabab8d87c87cb4d41c07523e2feadc94f92406d51961b86eb7743b72",
+      "git_blob_sha1": "c422ad4422454f86c62ac6d3ea0d9fbfdda4a0d8",
+      "binary": false
+    },
+    {
+      "path": "evaluation/semantic_readiness.py",
+      "mode": "100644",
+      "bytes": 5740,
+      "sha256": "6756afee98749758c4982d7ba3c99a64c2d73950272f9680190936e50f0b6a17",
+      "git_blob_sha1": "b24465b4cd39aa3751228be5f5468ab782b0fa2b",
+      "binary": false
+    },
+    {
       "path": "evaluation/spend.py",
       "mode": "100644",
       "bytes": 10584,
@@ -325,9 +357,9 @@
     {
       "path": "prototype/purchase_guard.py",
       "mode": "100644",
-      "bytes": 17175,
-      "sha256": "b61e0dc3d7c86dc130e9fb1ae578b87a8e1a9196770df4da9ba49ba9e8a28b4f",
-      "git_blob_sha1": "d7eda0fdb8b1371484b425f5cade65b8b7c829a9",
+      "bytes": 17515,
+      "sha256": "db6e8cfccd4da233c9a981a5bf520850371d382a83fde1b86e3e261114ba7fd9",
+      "git_blob_sha1": "5cc789bbab8eb4b64322662dec228ed963c20ba2",
       "binary": false
     },
     {
@@ -496,6 +528,22 @@
       "bytes": 292,
       "sha256": "c71e80394bdc1c9d0f7efa658f8186a535e7f5cdc08c9a96d4c8bded4919088e",
       "git_blob_sha1": "dd05ae8ef1a8de373f2efbb5c4cb19f6f2cbc428",
+      "binary": false
+    },
+    {
+      "path": "reports/semantic_boundary_checks.json",
+      "mode": "100644",
+      "bytes": 790,
+      "sha256": "ed8850b5ff159dbdbb54ef6270b69f7490574f1719b5a28f6e2e0cf30e31b91a",
+      "git_blob_sha1": "b3bad9bf0a36f3dd65d5b4e80d78fc0df752e8f3",
+      "binary": false
+    },
+    {
+      "path": "reports/semantic_readiness_status.json",
+      "mode": "100644",
+      "bytes": 951,
+      "sha256": "198a281cb173acad75bd3b06ae55bbf5b6ab451d5cc38d5c0a1522c11e6fffad",
+      "git_blob_sha1": "60692bfe9c6ef3129ce0e82bc37dacb973e907ab",
       "binary": false
     },
     {
@@ -704,6 +752,22 @@
       "bytes": 10191,
       "sha256": "4c3d600ef1aa6279a579ec7f324e7beaf896bbe1de32e70fe3547f97e57b54f9",
       "git_blob_sha1": "7a5db77d0c4e8b6b6a0518767400d2e8d606974e",
+      "binary": false
+    },
+    {
+      "path": "tests_evaluation/test_semantic_constraints.py",
+      "mode": "100644",
+      "bytes": 12859,
+      "sha256": "6ec2ee4f13b77bbefdbd1bf3d0288733a446f3c3fce1496b98d92afdc16ad6a2",
+      "git_blob_sha1": "c4253e8f1897156fd8ca3e7396a52bddc1f043d0",
+      "binary": false
+    },
+    {
+      "path": "tests_evaluation/test_semantic_readiness.py",
+      "mode": "100644",
+      "bytes": 4542,
+      "sha256": "07560c895bbcecaf2a371a7c0a2bf1dd3dabd4a940ca3f627eaef58affb531d3",
+      "git_blob_sha1": "111dfc60963aa1985725f8f49a71aa2ea036e8f1",
       "binary": false
     },
     {
@@ -3143,8 +3207,8 @@
       "binary": false
     }
   ],
-  "total_listed_files": 313,
-  "total_listed_bytes": 6775800,
+  "total_listed_files": 321,
+  "total_listed_bytes": 6832816,
   "largest_file": {
     "path": "upstream_reference/uv.lock",
     "mode": "100644",
@@ -3157,11 +3221,12 @@
     "upstream_source_modified": false
   },
   "binary_files": 5,
-  "text_files": 308,
+  "text_files": 316,
   "upstream_source_files": 212,
   "excluded_source_dataset_files": 12,
   "source_sanitized_files": [
     "upstream_reference/README.md"
   ],
-  "note": "This manifest excludes itself and root SHA256SUMS; publication worker may generate a final tree manifest."
+  "note": "Excludes itself and root SHA256SUMS. Hashes are canonical Git-index blob bytes, independent of checkout CRLF conversion. Upstream provenance is unchanged.",
+  "updated_for": "bounded-semantics-v1"
 }

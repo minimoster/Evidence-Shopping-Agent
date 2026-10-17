@@ -1,5 +1,24 @@
 # Relay preparation and actual validation status
 
+## Engineering update: 2026-10-17
+
+The opt-in bounded semantic interface now has deterministic proposal acceptance,
+explicit alternative/selected-axis-negative/capacity predicates, and independent
+current-product evidence review. It does not replace the frozen A/B/C intervention
+or enable paid execution. See [EVALUATION_SEMANTICS.md](EVALUATION_SEMANTICS.md).
+
+152 selected lightweight tests passed (32 new, 120 existing; zero failures or
+skips). These are synthetic rules/mocked integration, not real-model results.
+The reset-only dev20 adapter is implemented, but this clean checkout lacks the
+existing ignored split/catalog/index. New semantic readiness is **unmeasured**;
+the earlier canonical **0/20** remains the last actual measurement. It is parser
+readiness, not a model score or a finding that all 20 tasks are unsolvable.
+No tasks were removed, no budget ceilings inferred and no product evidence made
+up. `reports/semantic_readiness_status.json` records the missing assets. Zero
+model calls, simulator steps, training jobs or purchases occurred this stage.
+
+## Previously prepared relay configuration
+
 The prepared configuration uses exact `gpt-6.1-sol` through
 `https://st.walkcoding.top` for a finite 20-task A/B/C comparison. The full
 execution entrypoint remains disabled. It is not unlimited iteration, training,

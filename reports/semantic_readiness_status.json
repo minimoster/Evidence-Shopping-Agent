@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-17",
+  "base_commit": "e93088253e20dfa6d67e552b0e71962b99223572",
+  "interface": "bounded-semantics-v1",
+  "status": "blocked_missing_existing_local_assets",
+  "planned_development_task_count": 20,
+  "real_development_queries_measured_this_stage": 0,
+  "new_semantic_ready_count": null,
+  "historical_canonical_ready_count": 0,
+  "historical_canonical_denominator": 20,
+  "historical_result_remeasured": false,
+  "missing_local_assets": [
+    "runtime/dev20/manifest.json",
+    "runtime/dev20/tasks.jsonl",
+    "runtime/items_eval_train.json",
+    "runtime/products.sqlite3"
+  ],
+  "candidate_product_evidence_collected": false,
+  "task_solvability_assessed": false,
+  "full_model_experiment_enabled": false,
+  "planned_model_task_arm_slots": 60,
+  "model_calls": 0,
+  "simulator_steps": 0,
+  "purchases": 0,
+  "training_jobs": 0,
+  "final200_queries_or_labels_examined": false,
+  "synthetic_tests_are_model_performance": false
+}

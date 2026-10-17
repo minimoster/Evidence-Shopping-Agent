@@ -282,6 +282,24 @@ def _query_digest(requirements: QueryRequirements) -> str:
     return hashlib.sha256(requirements.query.encode("utf-8")).hexdigest()
 
 
+def snapshot_preconditions(snapshot: PublicSnapshot, intended_asin: str,
+                           intended_options: Mapping) -> tuple[str, ...]:
+    """Shared current-product checks; no query interpretation or authorization."""
+    reasons = ["observation:" + issue for issue in snapshot.issues]
+    if snapshot.page_type != "product_detail":
+        reasons.append("not_current_product_detail")
+    if "buy now" not in {action.casefold() for action in snapshot.actions}:
+        reasons.append("buy_action_not_currently_visible")
+    if intended_asin != snapshot.asin:
+        reasons.append("intended_asin_mismatch")
+    intended_variant, option_issues = _options(intended_options)
+    if option_issues or intended_variant != snapshot.variant:
+        reasons.append("intended_variant_mismatch")
+    if snapshot.price is None:
+        reasons.append("price_unknown")
+    return tuple(reasons)
+
+
 def verify_purchase(requirements: QueryRequirements, ledger: EvidenceLedger, *,
                     intended_asin: str, intended_options: Mapping) -> PurchaseDecision:
     """Gate a concrete intended ASIN/variant against only latest public evidence.
@@ -306,18 +324,7 @@ def verify_purchase(requirements: QueryRequirements, ledger: EvidenceLedger, *,
     if snapshot is None:
         reasons.append("no_public_observation")
         return PurchaseDecision(False, tuple(reasons), 0, _query_digest(requirements), None, (), None, maximum, ())
-    reasons.extend("observation:" + issue for issue in snapshot.issues)
-    if snapshot.page_type != "product_detail":
-        reasons.append("not_current_product_detail")
-    if "buy now" not in {action.casefold() for action in snapshot.actions}:
-        reasons.append("buy_action_not_currently_visible")
-    if intended_asin != snapshot.asin:
-        reasons.append("intended_asin_mismatch")
-    intended_variant, option_issues = _options(intended_options)
-    if option_issues or intended_variant != snapshot.variant:
-        reasons.append("intended_variant_mismatch")
-    if snapshot.price is None:
-        reasons.append("price_unknown")
+    reasons.extend(snapshot_preconditions(snapshot, intended_asin, intended_options))
     if requirements.budget is None:
         reasons.append("budget_unknown")
     elif requirements.budget.currency != "CNY":
