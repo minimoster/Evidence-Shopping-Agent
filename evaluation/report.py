@@ -13,6 +13,8 @@ def summarize(rows, *, manifest=None):
         rows, missing = complete_results(rows, manifest)
     if not rows:
         raise ValueError("empty evaluation")
+    if any(r.get("config", {}).get("intent_protocol", "original_query") != "original_query" for r in rows):
+        raise ValueError("confirmed tasks need confirmed_runner summary; original gold is not confirmed-task ground truth")
     kinds = {r["execution_kind"] for r in rows}
     if len(kinds) != 1:
         raise ValueError("cannot mix mocked and real evaluation")

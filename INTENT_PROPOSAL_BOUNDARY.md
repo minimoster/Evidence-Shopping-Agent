@@ -1,5 +1,11 @@
 # Intent proposal boundary: implemented, not NLU validated
 
+**2026-10-19:** a separate opt-in provider and explicit human-confirmed execution
+path now exists; see [CONFIRMED_EXECUTION.md](CONFIRMED_EXECUTION.md). The legacy
+`inspect_intent` API described below remains fixture-only. Its schema/source
+checks are reused without treating them as semantic proof. This document records
+the earlier diagnostic stage, not the complete current transport inventory.
+
 The dev20 check at `880e05e` found both interfaces ready on **0/20** tasks.
 Exact equality with a finite grammar protects against forged constraints but
 does not parse unrestricted shopping language. This stage separates untrusted
@@ -9,7 +15,7 @@ model or grammar expansion. See [cloud coverage](reports/dev20_880e05e_coverage.
 ## Three layers
 
 `evaluation.intent_proposals` defines a query-only `ProposalProvider` protocol.
-It is a future adapter contract, not a configured or callable model client.
+It is a provider contract; this legacy function does not dispatch model clients.
 Only `disabled` (default) and `offline_fixture` are implemented; the latter takes
 an `OfflineProposal` inert data object. Callback/provider objects and real-model
 mode are rejected before dispatch. No endpoint, credential parameter, retry loop,

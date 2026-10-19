@@ -1,6 +1,20 @@
 # Relay preparation and actual validation status
 
-## Latest: cloud coverage and proposal-boundary integration
+## 2026-10-19: configurable single-task confirmed execution
+
+[CONFIRMED_EXECUTION.md](CONFIRMED_EXECUTION.md) documents the new opt-in
+Chat Completions provider, human confirmation and same-task/model/budget ABC
+entrypoint. The old 20-task relay plan below remains disabled and grants no
+authorization to the new adapter. No real model/provider was contacted this round.
+25 new offline tests plus regressions passed (213 total, zero skips); all model
+responses/actions were hand-authored transport fixtures. The new CLI defaults to
+preflight and requires new explicit network/spend approval, an interactive terminal,
+verified local simulator assets and review before actions. Per-request monetary
+reservations are operator quotes, not verified costs or provider-enforced caps.
+Original dev20 query readiness remains 0/20; confirmed-task success and general
+semantic quality remain unmeasured. Original scorer outcomes are separately named.
+
+## Previous: cloud coverage and proposal-boundary integration
 
 Recovered original dev20 public queries were checked in the cloud at exact commit
 `880e05e16477248dd7581303582d387132959062`: canonical and bounded readiness are both

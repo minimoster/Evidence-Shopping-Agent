@@ -1,5 +1,11 @@
 # Natural-language evaluation boundary and next interface
 
+**2026-10-19 execution update:** [CONFIRMED_EXECUTION.md](CONFIRMED_EXECUTION.md)
+adds a configurable model proposal adapter and explicit human-confirmed single-task
+ABC protocol. The original-query parser remains bounded; no autonomous NLU quality
+or dev20 performance improvement is claimed. The historical roadmap below is not
+a statement that all model transports remain unimplemented.
+
 **Latest boundary integration:** [INTENT_PROPOSAL_BOUNDARY.md](INTENT_PROPOSAL_BOUNDARY.md)
 documents the separate untrusted proposal schema, source validation and semantic
 acceptance states now recorded by the existing runner/readiness flow. Real model

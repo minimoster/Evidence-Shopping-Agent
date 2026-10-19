@@ -3,6 +3,14 @@
   "source_commit": "449bba2686a6ff07327cb3ea77e5f0f91ebb4239",
   "files": [
     {
+      "path": ".github/workflows/offline-contracts.yml",
+      "mode": "100644",
+      "bytes": 693,
+      "sha256": "6944aae7ee10e3725ac2ad6569a2656dbf43e8e627922b12b89d21c78de7fe2e",
+      "git_blob_sha1": "690836d6c9f32102dbca9f90ed7856ee7cc3f66d",
+      "binary": false
+    },
+    {
       "path": ".gitignore",
       "mode": "100644",
       "bytes": 492,
@@ -16,6 +24,14 @@
       "bytes": 9594,
       "sha256": "b2c9a47f17e0752cc34889dc71dce60a8d33e4e543943dd32e4f93d58232d7e8",
       "git_blob_sha1": "7a00499d0b8794ad18b001e413650b96bf5a0b88",
+      "binary": false
+    },
+    {
+      "path": "CONFIRMED_EXECUTION.md",
+      "mode": "100644",
+      "bytes": 11547,
+      "sha256": "ce14901fb11f98f6c3115b7c1e6dd1cd4a62dcd5274c96949777aedcc318e363",
+      "git_blob_sha1": "e35b0408386cca714770f799c512242f7e39ce8f",
       "binary": false
     },
     {
@@ -37,9 +53,9 @@
     {
       "path": "EVALUATION_NLU_NEXT.md",
       "mode": "100644",
-      "bytes": 9295,
-      "sha256": "a80a20c414c080caa578cb49bbd0b5534aa1b5a882609f5e8917f8c41d9abccd",
-      "git_blob_sha1": "af1ea1a979fa17be616bb0deac474eae1f5af52d",
+      "bytes": 9686,
+      "sha256": "4151e107563b8d6613f29a754bf6bc48cf6f8ddca4c6a3607255122d669ce995",
+      "git_blob_sha1": "d30291ca2fe319ae07ea6b2da3cfebd60b211550",
       "binary": false
     },
     {
@@ -53,9 +69,9 @@
     {
       "path": "EVALUATION_SEMANTICS.md",
       "mode": "100644",
-      "bytes": 10571,
-      "sha256": "0ed2b88488969e1a70b76ac1c2d470889dcf358e0528c5e53bef9e54f83bf219",
-      "git_blob_sha1": "13fc16a9df44678a6f059111e3b4c1320cf663aa",
+      "bytes": 10885,
+      "sha256": "54d47507e47985ac8bbf144b7642f05663fc1914f3c3be3cbbf5d9b2a09b1479",
+      "git_blob_sha1": "b7369c32171c6841702b878ba6e6a3a22d5f31e7",
       "binary": false
     },
     {
@@ -69,9 +85,9 @@
     {
       "path": "INTENT_PROPOSAL_BOUNDARY.md",
       "mode": "100644",
-      "bytes": 6755,
-      "sha256": "97226f6c0e03ba72fd96e5e5a244d6f7695e37d5b5f86c337370bd0f712b7ba0",
-      "git_blob_sha1": "fce118e29cf1b833bf80df8ba0cfd7fe52391c13",
+      "bytes": 7159,
+      "sha256": "445fe54d4404fbb0b8c92b0049ab1bed4a9ad8820ef6a94a070ed33dfab245c3",
+      "git_blob_sha1": "16fec9063c0a1958eb119e972af89ce48df0f19b",
       "binary": false
     },
     {
@@ -85,17 +101,17 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "bytes": 7952,
-      "sha256": "448cd7eb935c6d2e36b894b494cd258caa6cd06d998a08d06301881d19e4c7ac",
-      "git_blob_sha1": "460d77f37e1561de96d8a3e774033174e6e738f8",
+      "bytes": 9267,
+      "sha256": "55de9de77e32ae5d287a0c3aae1bdf3fd6721e96a00f1b8e11e19e5fafa2fc9a",
+      "git_blob_sha1": "5302a0e4917fd106cfa1f447cf81e4e3aa24ac55",
       "binary": false
     },
     {
       "path": "REAL_EVALUATION_STATUS.md",
       "mode": "100644",
-      "bytes": 6937,
-      "sha256": "f12c94c55b1d961a19b0f3ab69801c744a36bc80e21e3fb1c587e1f3207d516b",
-      "git_blob_sha1": "b3b28daba129fed3bc67526f0506e667dbe02039",
+      "bytes": 7880,
+      "sha256": "c9a90e99d2b18ea6fccb2dcf6f99af2a0dde39eb1ee8e01c47e45d5449582461",
+      "git_blob_sha1": "f253d7cc96505c55eea137bf9b936efd52e5407a",
       "binary": false
     },
     {
@@ -147,6 +163,14 @@
       "binary": false
     },
     {
+      "path": "configs/confirmed_model.example.json",
+      "mode": "100644",
+      "bytes": 279,
+      "sha256": "bf40d0cc18f383bcbf06e4b36e3b51f9f70946899b22202ffc6c6d3c6150f954",
+      "git_blob_sha1": "106ac81a8699c24dbc6b0fb7edb6106afe039c3a",
+      "binary": false
+    },
+    {
       "path": "configs/dev20-evaluation.json",
       "mode": "100644",
       "bytes": 1082,
@@ -168,6 +192,38 @@
       "bytes": 1162,
       "sha256": "cb732719bec449aeaa19dbc86b477cf75d614d035f51a80e86a1da4746ec523c",
       "git_blob_sha1": "932c83663e3dd0a891fc4305efc532d4f5eda919",
+      "binary": false
+    },
+    {
+      "path": "evaluation/confirmed_cli.py",
+      "mode": "100644",
+      "bytes": 5980,
+      "sha256": "ed02247bd05f1673e6e1eec634b81df1eaedb7b5bf4eee449ec81c0b5cf9a359",
+      "git_blob_sha1": "2c3ff5ece088e63fd7765bc46bd80918937ff2c3",
+      "binary": false
+    },
+    {
+      "path": "evaluation/confirmed_demo.py",
+      "mode": "100644",
+      "bytes": 4888,
+      "sha256": "7123a4b9aa8eaff9b8a2fb82bc283b8a7d7a89fb202992c9ca23e4b6e7582340",
+      "git_blob_sha1": "c30b15fadcaf4394d5fe9384c7142ad2a22dc83d",
+      "binary": false
+    },
+    {
+      "path": "evaluation/confirmed_intent.py",
+      "mode": "100644",
+      "bytes": 8854,
+      "sha256": "845e07f16b27041398eb55c00cc7c1dd3f83bead7b5b4bdf644a23a63e0eaf51",
+      "git_blob_sha1": "94576cfc7cfbc1fb16c6c53cb70e6e2143b36f4c",
+      "binary": false
+    },
+    {
+      "path": "evaluation/confirmed_runner.py",
+      "mode": "100644",
+      "bytes": 7852,
+      "sha256": "6af852e55403a4307681cea90e96864acb44e8aa7058bc6a620d016e707e29e2",
+      "git_blob_sha1": "cf71402ad11e8530d0b13e569c789ebfe0e94235",
       "binary": false
     },
     {
@@ -213,9 +269,9 @@
     {
       "path": "evaluation/intent_proposals.py",
       "mode": "100644",
-      "bytes": 11208,
-      "sha256": "39ee7dfc057eba831d4c26250d25e3e6b6e1cddf58094ef2205014088d280454",
-      "git_blob_sha1": "619e1c2b57b0f9d9aa572dcb2e20c3fd09488f21",
+      "bytes": 11245,
+      "sha256": "c1dc79851c85277ec2b096d18de797d980aa47f811317e8bac978bb62ddec086",
+      "git_blob_sha1": "44c1d0f6388a1c8af9985422565ea58c20613d88",
       "binary": false
     },
     {
@@ -224,6 +280,14 @@
       "bytes": 18382,
       "sha256": "6c5acd26fbe3f268e101bd982c09b19519315bdc6a575ff2bde065a096603cc6",
       "git_blob_sha1": "31bf7424dc6b0e4c51b23f6bab8392f6a2d256d8",
+      "binary": false
+    },
+    {
+      "path": "evaluation/model_adapter.py",
+      "mode": "100644",
+      "bytes": 8532,
+      "sha256": "004b467ce6e2c4628a75c99a014a3d07bf88c2f618b160e006d0a859263e76c8",
+      "git_blob_sha1": "242ef8099146aa38c52f3f75459ff4dbf41ed3c5",
       "binary": false
     },
     {
@@ -269,33 +333,33 @@
     {
       "path": "evaluation/replay.py",
       "mode": "100644",
-      "bytes": 2809,
-      "sha256": "c597b5b1f57c49502e11789d7a5c7fb60ee40b7a4bf5a3989c52e44ca775b4e6",
-      "git_blob_sha1": "b3bdf5ab095eb5189f921ab6edb30315db1fa93f",
+      "bytes": 3558,
+      "sha256": "02d36a758f5c746ade306c128c37bc93592a1f279033ae65a9b658fb7ad07fe0",
+      "git_blob_sha1": "c072bb4dc842e819575125239692fc94a09c32a1",
       "binary": false
     },
     {
       "path": "evaluation/report.py",
       "mode": "100644",
-      "bytes": 5531,
-      "sha256": "aeababda413d2563f0d49e8e1862f3bb3ef978f7e3c6335f5b03f54545a3804d",
-      "git_blob_sha1": "4794040a3a0d73b289c7a4fb74958e84e988b702",
+      "bytes": 5763,
+      "sha256": "c7323cfaaf883f842206cfc1002d38ce93d8de4085a5906fb6bef9eb2a7168c4",
+      "git_blob_sha1": "cdc4e8577a8779f53dfb91a716f75e20f39b23f0",
       "binary": false
     },
     {
       "path": "evaluation/runner.py",
       "mode": "100644",
-      "bytes": 12819,
-      "sha256": "75677b1bebf7fbe2af5079b4d42ad59b4b8aac0df349a1ad51ffc61340d4b4e5",
-      "git_blob_sha1": "ff176bdc8ff2519b96e536719b501f1e4ca3e933",
+      "bytes": 15785,
+      "sha256": "155fe95227d040573b78684af6fc7637b96477517023d3dd5e4a7f50aea85e19",
+      "git_blob_sha1": "f1752eaf0367dea5652f3cffc1131b968e76e512",
       "binary": false
     },
     {
       "path": "evaluation/semantic_checks.py",
       "mode": "100644",
-      "bytes": 2406,
-      "sha256": "0c5fddde534a39c16ae3a0539527182c4023198b860c60e4f3ceb68a20bbc3ab",
-      "git_blob_sha1": "1a1485a95cc780778134c1b44cc8f95285ca238b",
+      "bytes": 2450,
+      "sha256": "721026c1ffc0b54a5c77486c89fdbff247497b24c59f1d316de02b0fcb5c348c",
+      "git_blob_sha1": "d9436ff9bda92bdd06314f9ccf3d4ab570be8917",
       "binary": false
     },
     {
@@ -448,6 +512,14 @@
       "bytes": 6823,
       "sha256": "64096a61c16ea791f0d4ab3beb90057cc1a1370461203d7ff1edf4aed959406f",
       "git_blob_sha1": "26bda87f96fddce7380dfb84a8586566af69399d",
+      "binary": false
+    },
+    {
+      "path": "reports/confirmed_flow_checks.json",
+      "mode": "100644",
+      "bytes": 958,
+      "sha256": "586e82c8e464191f8d2ca3d532bab25e1218a5a74eb691834e24f56e90d6dfee",
+      "git_blob_sha1": "b70f27f216443e9ad4d548f4f973e9378ca9c67c",
       "binary": false
     },
     {
@@ -688,6 +760,14 @@
       "bytes": 76,
       "sha256": "ecb47bdbadb8b70fabda3d3ee7401a8afaf69c1db3bb04091d24808e9dc87582",
       "git_blob_sha1": "285280185aa181b86b14dce0fc7f732a363f9f59",
+      "binary": false
+    },
+    {
+      "path": "tests_evaluation/test_confirmed_flow.py",
+      "mode": "100644",
+      "bytes": 17219,
+      "sha256": "cc1cddfb5d4e28a89c2ab2c2c20379a259c4477127c07c5d3fa723995bf0e0d8",
+      "git_blob_sha1": "6b4c9c8af84a1bb7f23e191b0f3cfdf6ff5e7b6a",
       "binary": false
     },
     {
@@ -3239,6 +3319,14 @@
       "binary": false
     },
     {
+      "path": "verify_publication.py",
+      "mode": "100644",
+      "bytes": 3249,
+      "sha256": "e4506f2711912c982f650bb3a7948506c828655f736ad85bbac0fe32a771dde2",
+      "git_blob_sha1": "b38b811cb1902fe3bbb4637cfa854498ffe54fda",
+      "binary": false
+    },
+    {
       "path": "verify_upstream_snapshot.py",
       "mode": "100644",
       "bytes": 1726,
@@ -3247,8 +3335,8 @@
       "binary": false
     }
   ],
-  "total_listed_files": 326,
-  "total_listed_bytes": 6871050,
+  "total_listed_files": 337,
+  "total_listed_bytes": 6948496,
   "largest_file": {
     "path": "upstream_reference/uv.lock",
     "mode": "100644",
@@ -3261,12 +3349,12 @@
     "upstream_source_modified": false
   },
   "binary_files": 5,
-  "text_files": 321,
+  "text_files": 332,
   "upstream_source_files": 212,
   "excluded_source_dataset_files": 12,
   "source_sanitized_files": [
     "upstream_reference/README.md"
   ],
   "note": "Excludes itself and root SHA256SUMS. Hashes are canonical Git-index blob bytes, independent of checkout CRLF conversion. Upstream provenance is unchanged.",
-  "updated_for": "untrusted-intent-proposal-v1"
+  "updated_for": "human-confirmed-execution-v1"
 }

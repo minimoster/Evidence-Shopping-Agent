@@ -1,5 +1,10 @@
 # Bounded semantics and evidence review (2026-10-17)
 
+**2026-10-19:** the separate [human-confirmed execution path](CONFIRMED_EXECUTION.md)
+now connects model proposals to the unchanged canonical purchase guard. This
+bounded semantics module is not substituted into that gate. The original-query
+protocol and its historical dev20 coverage remain as documented below.
+
 This is an opt-in engineering interface, not general shopping NLU or a released
 model experiment. It extends the earlier audit-only work with deterministic
 semantic acceptance and predicate-specific public-evidence checks. The existing

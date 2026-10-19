@@ -1,0 +1,25 @@
+name: Offline contracts
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  standard-library-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, resolved 2026-10-19
+        with:
+          persist-credentials: false
+      - name: Verify canonical publication and retained upstream
+        run: |
+          python3 verify_publication.py
+          python3 verify_upstream_snapshot.py
+      - name: Offline semantic, intake and purchase guard contracts
+        run: python3 -m evaluation.semantic_checks --output results/ci-contracts.json

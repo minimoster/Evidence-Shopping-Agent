@@ -1,0 +1,10 @@
+{
+  "endpoint": "https://example.invalid/v1/chat/completions",
+  "model": "REPLACE_WITH_EXACT_MODEL_ID",
+  "max_requests": 28,
+  "max_reserved_usd": "1.00",
+  "per_request_reserve_usd": "0.03",
+  "max_output_tokens": 2048,
+  "max_request_bytes": 65536,
+  "timeout_seconds": 60
+}

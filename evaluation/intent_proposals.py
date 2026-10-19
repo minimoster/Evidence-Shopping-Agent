@@ -1,8 +1,9 @@
 """Untrusted intent proposals, source validation and separate acceptance states.
 
-No model transport is implemented or callable. A future provider implements the
-query-only Protocol; this stage accepts only explicitly supplied inert fixtures.
-Schema/source validity never grants semantic or purchase approval.
+This legacy diagnostic path accepts only explicitly supplied inert fixtures.
+The separate confirmed_intent/model_adapter path implements an opt-in LLM
+provider with human confirmation. Schema/source validity never grants semantic
+or purchase approval in either path.
 """
 from __future__ import annotations
 
@@ -23,7 +24,7 @@ _AMOUNT = re.compile(r"[0-9]{1,12}(?:\.[0-9]{1,6})?")
 
 
 class ProposalProvider(Protocol):
-    """Future transport boundary. Not instantiated or dispatched in this stage."""
+    """Query-only provider contract; not dispatched by legacy inspect_intent."""
     def propose(self, query: str) -> dict: ...
 
 

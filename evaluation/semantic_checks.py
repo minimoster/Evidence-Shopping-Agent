@@ -16,6 +16,7 @@ MODULES = (
     "tests_evaluation.test_semantic_readiness",
     "tests_evaluation.test_intent_proposals",
     "tests_evaluation.test_experiment", "tests_evaluation.test_real_cli",
+    "tests_evaluation.test_confirmed_flow",
 )
 
 
