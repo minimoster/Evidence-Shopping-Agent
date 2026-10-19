@@ -23,3 +23,7 @@ jobs:
           python3 verify_upstream_snapshot.py
       - name: Offline semantic, intake and purchase guard contracts
         run: python3 -m evaluation.semantic_checks --output results/ci-contracts.json
+      - name: Loopback product HTTP integration
+        run: python3 -m shopping_demo.product_checks --output results/ci-product.json
+      - name: Browser script syntax
+        run: node --check shopping_demo/static/confirmed.js

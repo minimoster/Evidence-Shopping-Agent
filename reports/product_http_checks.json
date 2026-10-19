@@ -1,0 +1,18 @@
+{
+  "suite": "offline_product_and_loopback_http",
+  "modules": [
+    "tests_demo.test_core",
+    "tests_demo.test_web",
+    "tests_demo.test_confirmed_web"
+  ],
+  "tests_run": 45,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "network_policy": "127.0.0.1_only",
+  "blocked_external_attempts": [],
+  "browser_rendering_tested": false,
+  "real_model_calls": 0,
+  "real_simulator_tasks": 0
+}

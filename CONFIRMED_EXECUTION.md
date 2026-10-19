@@ -1,5 +1,11 @@
 # Natural-language intake and confirmed simulator execution
 
+The follow-up [interactive offline product flow](PRODUCT_FLOW.md) adds explicit
+human budget clarification and revision-bound confirmation in `/confirmed`.
+Current checks are 217 semantic tests plus 45 loopback HTTP/product tests; the
+213-test result below is the first implementation's retained historical record.
+Real-model validation remains pending; see the [minimal plan](MINIMAL_REAL_VALIDATION.md).
+
 This increment implements a callable, configurable model adapter and a complete
 proposal/review/confirmation/decision/terminal-trace path. **It has only been
 tested with offline transports and synthetic stores.** It is not evidence of
@@ -69,7 +75,7 @@ Human review can also be wrong. Checksums establish consistency, not authenticit
 the host must treat confirmation files/functions as trusted operator inputs, never
 as model tools or untrusted remote payloads. The Actor has no confirmation tool.
 
-Clarification stops the current run without actions; its review and billed/unknown
+In the real CLI, clarification stops the current run without actions; its review and billed/unknown
 proposal attempt remain saved. There is no auto-fix, automatic re-proposal or hidden
 budget reset. A revised query requires a new explicitly reviewed intake, and the
 actual simulator reset query must still match the recorded original. This version

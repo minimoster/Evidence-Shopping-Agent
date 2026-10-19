@@ -14,6 +14,8 @@ import time
 from urllib.parse import parse_qs, unquote, urlsplit
 
 from .core import DEFAULT_QUERY, SCENARIOS, Task
+from .confirmed import ConfirmedProduct, EXAMPLES, SCENARIOS as CONFIRMED_SCENARIOS
+from project_paths import ROOT
 
 BODY_LIMIT = 8192
 COOKIE_NAME = "offline_shopping_session"
@@ -26,22 +28,26 @@ class Session:
     task: Task = field(default_factory=Task)
     lock: threading.RLock = field(default_factory=threading.RLock)
     touched: float = field(default_factory=time.monotonic)
+    confirmed: ConfirmedProduct | None = None
 
 
 class DemoServer(ThreadingHTTPServer):
     daemon_threads = True
     allow_reuse_address = True
 
-    def __init__(self, address: tuple[str, int]):
+    def __init__(self, address: tuple[str, int], *, product_output_root=None):
         if address[0] != "127.0.0.1":
             raise ValueError("This offline demo only binds to 127.0.0.1")
         self.sessions: dict[str, Session] = {}
         self.sessions_lock = threading.RLock()
+        self.product_output_root = Path(product_output_root) if product_output_root is not None else ROOT / 'results' / 'confirmed-ui'
         # Files are a fixed package allowlist; request paths are never filesystem paths.
         self.static_files = {
             "/": ("text/html; charset=utf-8", (STATIC / "index.html").read_bytes()),
             "/app.js": ("text/javascript; charset=utf-8", (STATIC / "app.js").read_bytes()),
             "/style.css": ("text/css; charset=utf-8", (STATIC / "style.css").read_bytes()),
+            "/confirmed": ("text/html; charset=utf-8", (STATIC / "confirmed.html").read_bytes()),
+            "/confirmed.js": ("text/javascript; charset=utf-8", (STATIC / "confirmed.js").read_bytes()),
         }
         super().__init__(address, Handler)
         self.allowed_host = f"127.0.0.1:{self.server_port}"
@@ -138,10 +144,10 @@ class Handler(BaseHTTPRequestHandler):
             mime, data = self.server.static_files[path]
             self._send(200, data, content_type=mime)
             return
-        if path not in {"/api/session", "/api/state", "/api/trace"}:
+        if path not in {"/api/session", "/api/state", "/api/trace", "/api/confirmed", "/api/confirmed/trace"}:
             self._reject(404, "not_found")
             return
-        if path != "/api/trace" and query:
+        if path not in {"/api/trace", "/api/confirmed/trace"} and query:
             self._reject(400, "unexpected_query")
             return
         result = self._session(create=path == "/api/session")
@@ -149,7 +155,21 @@ class Handler(BaseHTTPRequestHandler):
             return
         sid, session = result
         with session.lock:
-            if path == "/api/session":
+            if path == '/api/confirmed':
+                self._send(200, session.confirmed.state() if session.confirmed else
+                    {'status': 'idle', 'finite_query_fixtures': EXAMPLES, 'scenarios': CONFIRMED_SCENARIOS,
+                     'offline_only': True})
+            elif path == '/api/confirmed/trace':
+                params = parse_qs(query, keep_blank_values=True)
+                if (session.confirmed is None or set(params) != {'revision'} or
+                        params['revision'] != [session.confirmed.revision]):
+                    self._reject(404, 'trace_not_found_in_this_session')
+                    return
+                try:
+                    self._send(200, session.confirmed.trace())
+                except ValueError:
+                    self._reject(404, 'trace_not_ready')
+            elif path == "/api/session":
                 self._send(200, {"csrf": session.csrf, "state": session.task.state(),
                                  "scenarios": SCENARIOS, "default_query": DEFAULT_QUERY}, cookie=sid)
             elif path == "/api/state":
@@ -167,7 +187,9 @@ class Handler(BaseHTTPRequestHandler):
         if route is None:
             return
         path, query = route
-        if query or path not in {"/api/task", "/api/step", "/api/run", "/api/reset"}:
+        if query or path not in {"/api/task", "/api/step", "/api/run", "/api/reset",
+            '/api/confirmed/new', '/api/confirmed/clarify', '/api/confirmed/confirm',
+            '/api/confirmed/run', '/api/confirmed/replay'}:
             self._reject(404, "not_found")
             return
         result = self._session()
@@ -205,7 +227,37 @@ class Handler(BaseHTTPRequestHandler):
             return
         with session.lock:
             try:
-                if path == "/api/task":
+                if path.startswith('/api/confirmed/'):
+                    if path == '/api/confirmed/new':
+                        if set(body) != {'query', 'scenario'}:
+                            raise ValueError('unexpected_fields')
+                        replacement = ConfirmedProduct(body['query'], body['scenario'])
+                        if session.confirmed is not None:
+                            session.confirmed.client.close()
+                        session.confirmed = replacement
+                    else:
+                        product = session.confirmed
+                        if product is None:
+                            raise ValueError('intake_required')
+                        expected = {'revision'}
+                        if path.endswith('/clarify'):
+                            expected.add('ceiling_cny')
+                        elif path.endswith('/confirm'):
+                            expected.update({'review_sha256', 'accepted'})
+                        if set(body) != expected:
+                            raise ValueError('unexpected_fields')
+                        if path.endswith('/clarify'):
+                            product.clarify(body['revision'], body['ceiling_cny'])
+                        elif path.endswith('/confirm'):
+                            product.confirm(body['revision'], body['review_sha256'], body['accepted'])
+                        elif path.endswith('/run'):
+                            product.run(body['revision'], self.server.product_output_root)
+                        else:
+                            self._send(200, product.replay(body['revision']))
+                            return
+                    self._send(200, session.confirmed.state())
+                    return
+                elif path == "/api/task":
                     if set(body) - {"query", "scenario", "max_steps"}:
                         raise ValueError("unexpected_fields")
                     session.task = Task(body.get("query", DEFAULT_QUERY), body.get("scenario", "success"),

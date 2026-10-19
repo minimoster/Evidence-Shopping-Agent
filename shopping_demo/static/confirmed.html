@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>需求确认 · 证据购物实验室</title><link rel="stylesheet" href="/style.css"><script src="/confirmed.js" defer></script></head>
+<body>
+<header class="topbar"><a class="brand" href="/">E• 证据购物实验室</a><span class="offline">OFFLINE FIXTURE ONLY</span></header>
+<main>
+  <section class="intro"><p class="eyebrow">REVIEW / CONFIRM / RECOVER</p><h1>把需求确认清楚，再执行。</h1>
+    <p class="subtitle">看清提议、补充预算，再观察购买闸门如何拒绝并恢复。</p>
+    <p class="warning">离线假模型 · 有限手写示例 · 不真实购物</p>
+    <p class="fine">仅下面四个完整句子有手写解释。其他输入会明确停止，不代表通用自然语言理解。商品、价格和决策均为合成测试数据。</p></section>
+  <div id="message" role="status" aria-live="polite"></div>
+  <div class="workspace">
+    <section class="panel controls"><div class="section-title"><span class="stepno">01</span><h2>输入与澄清</h2></div>
+      <label for="example">有限示例（选取后仍需新建任务）</label><select id="example"></select>
+      <label for="query">原始需求</label><textarea id="query" rows="4" maxlength="256"></textarea>
+      <label for="scenario">合成商品变化</label><select id="scenario"></select>
+      <button id="propose" class="secondary">新建任务并查看提议</button>
+      <p class="hint">编辑后必须新建任务；新建后旧确认失效。每次新建任务单独记录一次离线提议，不代表所有历史任务的总调用。</p>
+      <p id="input-warning" role="status"></p>
+      <div id="clarification" hidden><label for="ceiling">请明确单件商品人民币最高价（含上限）</label>
+        <input id="ceiling" inputmode="decimal" placeholder="例如 100.00" maxlength="12">
+        <p class="hint">这是你新增的预算指令，将替换原来近似、名义或缺失的预算解释，不是模型从原句抽取的事实。不会自动采用“大约”的金额。</p>
+        <button id="clarify">提交明确上限</button></div>
+      <p id="issues" class="hint"></p>
+    </section>
+    <section class="panel shop"><div class="section-title"><span class="stepno">02</span><h2>核对并确认</h2></div>
+      <div class="statusline"><span id="status" class="status">未开始</span></div>
+      <label>保留的原句</label><p id="original"></p>
+      <label>待确认的明确要求</label><p id="candidate"></p>
+      <p id="budget-source" class="hint"></p>
+      <details open><summary>模型提议全文（未经语义验证）</summary><pre id="proposal"></pre></details>
+      <details><summary>原始提议与人工补充记录</summary><pre id="clarification-json"></pre></details>
+      <label><input id="accepted" type="checkbox"> 我已逐项核对原句与提议，以上明确要求包含全部硬条件；同意所示人民币上限，仅执行离线模拟。</label>
+      <button id="confirm" class="secondary" disabled>确认当前要求</button>
+      <div class="buttonrow"><button id="run" class="primary" disabled>执行离线 A/B/C</button></div>
+      <p class="hint">确认不证明模型理解正确。三组共用同一需求；C 使用购买证据闸门。所有组的总调用预算都包含提议。</p>
+    </section>
+    <section class="panel proof"><div class="section-title"><span class="stepno">03</span><h2>C 组终态</h2></div>
+      <p id="outcome">确认并执行后显示。</p><div id="arm-summary"></div>
+      <p class="hint">“模拟购买”只说明合成环境执行了动作，不是独立判定的任务成功。A/B 是没有证据闸门的实验对照。</p>
+      <p id="counts" class="mono"></p>
+      <details><summary>完整运行摘要</summary><pre id="summary"></pre></details>
+    </section>
+  </div>
+  <section class="panel replay"><div class="section-title"><span class="stepno">04</span><h2>C 组轨迹与证据回放</h2>
+    <button id="download" disabled>下载完整 JSON</button><button id="replay" disabled>离线重算闸门</button></div>
+    <div class="replay-controls"><button id="prev" disabled>←</button><input id="seek" type="range" min="0" max="0" value="0" disabled aria-label="选择轨迹事件"><button id="next" disabled>→</button><span id="position"></span></div>
+    <p id="event-label"></p><p id="replay-status" role="status"></p><pre id="event"></pre>
+    <p class="hint">回放只读当前任务轨迹，不调用模型、不重试购买。校验只证明内部一致性，不证明真实执行或语义正确。</p></section>
+  <footer><a href="/">返回旧窄语法工具循环演示</a> · 服务仅绑定 127.0.0.1 · 不接外部模型或商城</footer>
+</main></body></html>

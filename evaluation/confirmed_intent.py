@@ -7,6 +7,7 @@ checked, not digitally signed; do not accept them from an untrusted model.
 from copy import deepcopy
 import hashlib
 import json
+import re
 
 from prototype.requirements import FIELD_ALIASES, query_resource_issue
 from .constraints import compile_query
@@ -76,12 +77,16 @@ class LLMProposalProvider:
                           parse_constant=lambda _: (_ for _ in ()).throw(ValueError("nonfinite JSON")))
 
 
-def review_proposal(query, proposal):
+def review_proposal(query, proposal, *, human_ceiling=None):
     """Render a bounded candidate; never infer a budget or silently drop a node."""
     errors = list(validate_proposal(query, proposal))
     candidate = None
     if not errors:
         b = proposal["budget"]
+        if human_ceiling is not None:
+            # A new human instruction, NOT an extraction from original spans.
+            b = {"classification": "explicit_ceiling", "currency": "CNY",
+                 "amounts": [human_ceiling], "comparator": "le"}
         if b["classification"] != "explicit_ceiling" or b["currency"] != "CNY":
             errors.append("clarify_explicit_CNY_ceiling")
         if any(s["role"] == "unresolved" for s in proposal["segments"]):
@@ -128,18 +133,57 @@ def prepare_intent(query, provider):
     return review
 
 
-def validate_review(review):
+def _validate_base_review(review):
     bare = {k: v for k, v in review.items() if k != "review_sha256"}
     if digest(bare) != review.get("review_sha256"):
         raise ValueError("review artifact changed")
-    if review.get("state") != "awaiting_confirmation":
-        raise ValueError("clarification or a new proposal required")
     expected = review_proposal(review["original_query"], review["proposal"])
     if any(review.get(k) != v for k, v in expected.items()):
         raise ValueError("review does not match original query and proposal")
     usage = review.get("proposal_usage")
     if type(usage) is not list or len(usage) != 1 or usage[0].get("purpose") != "intent_proposal" or usage[0].get("status") != "received":
         raise ValueError("one completed, accounted proposal required")
+
+
+def clarify_budget(review, ceiling_cny):
+    """Accept one explicit human ceiling, retaining the original intake intact.
+
+    No new model request and no reset of its usage. Other unresolved requirements
+    still block confirmation. Hosts must invalidate any previous UI revision.
+    """
+    if 'budget_clarification' in review:
+        raise ValueError('create a new intake to revise an existing clarification')
+    _validate_base_review(review)
+    if review['state'] != 'needs_clarification' or 'clarify_explicit_CNY_ceiling' not in review['issues']:
+        raise ValueError('this intake does not need budget clarification')
+    budget = review['proposal']['budget']
+    if (budget['classification'] not in {'absent', 'absent_or_unrecognized', 'approximate_target', 'nominal_target'}
+            or budget['currency'] not in {None, 'CNY'}):
+        raise ValueError('range, soft or other-currency budgets need a newly reviewed task')
+    if (type(ceiling_cny) is not str or not re.fullmatch(r'[0-9]{1,9}(?:\.[0-9]{1,2})?', ceiling_cny)
+            or not any(c in '123456789' for c in ceiling_cny)):
+        raise ValueError('explicit positive CNY ceiling with at most two decimal places required')
+    updated = review_proposal(review['original_query'], review['proposal'], human_ceiling=ceiling_cny)
+    updated['proposal_usage'] = deepcopy(review['proposal_usage'])
+    updated['model_config'] = deepcopy(review['model_config'])
+    updated['budget_clarification'] = {'source': 'human_explicit_instruction',
+        'ceiling_cny': ceiling_cny, 'inclusive': True,
+        'meaning': 'replace_prior_approximate_nominal_or_absent_budget_interpretation',
+        'source_review': deepcopy(review)}
+    updated['review_sha256'] = digest(updated)
+    return updated
+
+
+def validate_review(review):
+    if 'budget_clarification' in review:
+        clarification = review['budget_clarification']
+        expected = clarify_budget(clarification['source_review'], clarification['ceiling_cny'])
+        if expected != review:
+            raise ValueError('clarification, original intake or effective task changed')
+    else:
+        _validate_base_review(review)
+    if review.get("state") != "awaiting_confirmation":
+        raise ValueError("clarification or a new proposal required")
 
 
 def confirm_intent(review, *, statement, reviewer):

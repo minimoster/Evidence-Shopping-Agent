@@ -1,0 +1,30 @@
+{
+  "suite": "bounded_semantics_and_guard_regression",
+  "modules": [
+    "prototype.tests.test_requirements",
+    "prototype.tests.test_purchase_guard",
+    "prototype.tests.test_public_schema",
+    "tests_evaluation.test_constraints",
+    "tests_evaluation.test_natural_constraints",
+    "tests_evaluation.test_query_analysis_runner",
+    "tests_evaluation.test_runner",
+    "tests_evaluation.test_semantic_constraints",
+    "tests_evaluation.test_semantic_readiness",
+    "tests_evaluation.test_intent_proposals",
+    "tests_evaluation.test_experiment",
+    "tests_evaluation.test_real_cli",
+    "tests_evaluation.test_confirmed_flow",
+    "tests_evaluation.test_intake_clarification"
+  ],
+  "tests_run": 217,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "external_actions": "denied",
+  "blocked_external_action_attempts": [],
+  "evidence_kind": "synthetic_unit_and_mocked_integration_tests",
+  "real_development_queries_tested": 0,
+  "model_calls": 0,
+  "simulator_steps": 0
+}

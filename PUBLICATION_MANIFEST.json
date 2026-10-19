@@ -5,9 +5,9 @@
     {
       "path": ".github/workflows/offline-contracts.yml",
       "mode": "100644",
-      "bytes": 693,
-      "sha256": "6944aae7ee10e3725ac2ad6569a2656dbf43e8e627922b12b89d21c78de7fe2e",
-      "git_blob_sha1": "690836d6c9f32102dbca9f90ed7856ee7cc3f66d",
+      "bytes": 923,
+      "sha256": "7004e5f961c2d5ab03fe6f0737684ca81c3fce606a626637541d2a26857cb11f",
+      "git_blob_sha1": "77d476e5c18f02768d609f5425ee5f227dc419fe",
       "binary": false
     },
     {
@@ -29,9 +29,9 @@
     {
       "path": "CONFIRMED_EXECUTION.md",
       "mode": "100644",
-      "bytes": 11547,
-      "sha256": "ce14901fb11f98f6c3115b7c1e6dd1cd4a62dcd5274c96949777aedcc318e363",
-      "git_blob_sha1": "e35b0408386cca714770f799c512242f7e39ce8f",
+      "bytes": 11971,
+      "sha256": "567605c38a9c2cba4a4452dd1c96d6ae003a10a4b19706b63a6afba5e5d518e5",
+      "git_blob_sha1": "a5d452c1e93575692956ff4fbc6672060acf86cd",
       "binary": false
     },
     {
@@ -45,9 +45,9 @@
     {
       "path": "DEMO_README.md",
       "mode": "100644",
-      "bytes": 11792,
-      "sha256": "0f50e7fb88c1b305aca43cd69ce04de1acee4917a12a627e2afa6bbff58a6654",
-      "git_blob_sha1": "7f6fba04709b380fc06ac7072516a3b58200f860",
+      "bytes": 12078,
+      "sha256": "7ac1fe27d1653172b352a943fe2e7bbc17445475d04b22929c52498bc7b38205",
+      "git_blob_sha1": "d856cda199b762995fa8dd9393836d5e450ee724",
       "binary": false
     },
     {
@@ -91,6 +91,14 @@
       "binary": false
     },
     {
+      "path": "MINIMAL_REAL_VALIDATION.md",
+      "mode": "100644",
+      "bytes": 3309,
+      "sha256": "daa6f470eb615fb5bb802c9fb00e069145d0d2bfa639d799d9f96fd465c2a93b",
+      "git_blob_sha1": "3975a23c8bc5640ecf2bac6c78cfc3ac37608225",
+      "binary": false
+    },
+    {
       "path": "PROBE_README.md",
       "mode": "100644",
       "bytes": 2648,
@@ -99,11 +107,19 @@
       "binary": false
     },
     {
+      "path": "PRODUCT_FLOW.md",
+      "mode": "100644",
+      "bytes": 3317,
+      "sha256": "641885ab702f0cf80907764c276a67c6837ad007c822528ea653c40381f0782f",
+      "git_blob_sha1": "f6e62a0858494e2bc1b36749fd167abc29ff3114",
+      "binary": false
+    },
+    {
       "path": "README.md",
       "mode": "100644",
-      "bytes": 9267,
-      "sha256": "55de9de77e32ae5d287a0c3aae1bdf3fd6721e96a00f1b8e11e19e5fafa2fc9a",
-      "git_blob_sha1": "5302a0e4917fd106cfa1f447cf81e4e3aa24ac55",
+      "bytes": 10027,
+      "sha256": "c41579cbed7b5760197f83650fe0d9b3b3988683defc1f0a45bcad693bcd7d68",
+      "git_blob_sha1": "bca10a7c1ec0e0d60e2fbce925f7cac03bed2655",
       "binary": false
     },
     {
@@ -213,9 +229,9 @@
     {
       "path": "evaluation/confirmed_intent.py",
       "mode": "100644",
-      "bytes": 8854,
-      "sha256": "845e07f16b27041398eb55c00cc7c1dd3f83bead7b5b4bdf644a23a63e0eaf51",
-      "git_blob_sha1": "94576cfc7cfbc1fb16c6c53cb70e6e2143b36f4c",
+      "bytes": 11310,
+      "sha256": "300656e470bf00404609f32c769ac69bbd470a6a12c1077c02d48b98d2729720",
+      "git_blob_sha1": "31c9a81702be55442dffe029297169874d92e16f",
       "binary": false
     },
     {
@@ -357,9 +373,9 @@
     {
       "path": "evaluation/semantic_checks.py",
       "mode": "100644",
-      "bytes": 2450,
-      "sha256": "721026c1ffc0b54a5c77486c89fdbff247497b24c59f1d316de02b0fcb5c348c",
-      "git_blob_sha1": "d9436ff9bda92bdd06314f9ccf3d4ab570be8917",
+      "bytes": 2500,
+      "sha256": "fa174357d23ad44fbe1ed7bf11dff5015c1c4efaec3ece034b215fb30bbfa5ce",
+      "git_blob_sha1": "ae912a81a8849181069ce48a5f980c846f969cb1",
       "binary": false
     },
     {
@@ -595,6 +611,22 @@
       "binary": false
     },
     {
+      "path": "reports/product_http_checks.json",
+      "mode": "100644",
+      "bytes": 415,
+      "sha256": "d9280cc257ee788c9d5d1ca52c6b46f2079553c8e11ef43f0518ef631db99478",
+      "git_blob_sha1": "91c062fca77494bd5ca68a4af86893bf0cfe6c22",
+      "binary": false
+    },
+    {
+      "path": "reports/product_semantics_checks.json",
+      "mode": "100644",
+      "bytes": 1008,
+      "sha256": "213595ccd2ba4e6979050fb3b25525e6cb2967cf94e32c5cd17c4ead4161a254",
+      "git_blob_sha1": "4601ab11bf6850cebcffa664e3b8bcb408a7f7dd",
+      "binary": false
+    },
+    {
       "path": "reports/prototype_summary.json",
       "mode": "100644",
       "bytes": 596,
@@ -691,11 +723,27 @@
       "binary": false
     },
     {
+      "path": "shopping_demo/confirmed.py",
+      "mode": "100644",
+      "bytes": 8530,
+      "sha256": "e33611c3e56c01e4be3298bc444680944b49fe19a3371e715bff771a35ef7d66",
+      "git_blob_sha1": "74afa3e514f6de5fc2a6b6c27902178fcfe594d7",
+      "binary": false
+    },
+    {
       "path": "shopping_demo/core.py",
       "mode": "100644",
       "bytes": 23079,
       "sha256": "8965b5ffdf08daf5f40084747db2ddb658256eba099cd82b78c6ee872e50750e",
       "git_blob_sha1": "0d623fcd1ab9ec2f4d6ac5eaea67a4b60ec00710",
+      "binary": false
+    },
+    {
+      "path": "shopping_demo/product_checks.py",
+      "mode": "100644",
+      "bytes": 2228,
+      "sha256": "f7223e5b99e3aad5bce0bf8cb971793195c10cca7dc8d54fbc76b03c3ad713f3",
+      "git_blob_sha1": "d20e2d975ee8cb7b0645eac1625f3707c46d11c1",
       "binary": false
     },
     {
@@ -707,11 +755,27 @@
       "binary": false
     },
     {
+      "path": "shopping_demo/static/confirmed.html",
+      "mode": "100644",
+      "bytes": 4869,
+      "sha256": "6364316377fdcf2373bfc17427e148e468ab134f9f69525b5d0ccca93dd45987",
+      "git_blob_sha1": "e1906675bace08c25a44d80bd25cd23c0327db04",
+      "binary": false
+    },
+    {
+      "path": "shopping_demo/static/confirmed.js",
+      "mode": "100644",
+      "bytes": 8556,
+      "sha256": "a1fb096b4ffb143d321ed134e1624980b3b310ae2d5e8eca8f3468e51467a311",
+      "git_blob_sha1": "4e3919a3dad7ed4dae66ca885b3b961981aa7d41",
+      "binary": false
+    },
+    {
       "path": "shopping_demo/static/index.html",
       "mode": "100644",
-      "bytes": 3915,
-      "sha256": "e757786a487b79b6111e6292ad83b5e99b48ba6460af12394fdbff761b445586",
-      "git_blob_sha1": "4aca4061f5e048bc33f45e5316e24db241072f32",
+      "bytes": 4030,
+      "sha256": "891cd0cc4cc2d9e72fd2b5c56542da3b624ab0bc227d50aefd57bcd716cb6ae4",
+      "git_blob_sha1": "0582c6d5c8a306920b0ec11b4bee1f4f8fbedd9a",
       "binary": false
     },
     {
@@ -725,9 +789,9 @@
     {
       "path": "shopping_demo/web.py",
       "mode": "100644",
-      "bytes": 10592,
-      "sha256": "740dd0c71131295af5a47c45bf14a1854724d507c43bcbf7bb84ca47bb237ee3",
-      "git_blob_sha1": "b08deecc4f41f900084c8ba4cd0201e81a8eb5ee",
+      "bytes": 13928,
+      "sha256": "c0ac50e5c5a1c87a567dd3e3a7878c8ec5a086a96d620ab5bd6c8224792f2601",
+      "git_blob_sha1": "1fb2d3b02a0e4d23a624b94a1f45cc43fc642462",
       "binary": false
     },
     {
@@ -736,6 +800,14 @@
       "bytes": 78,
       "sha256": "c8ed0bf90ce507eb084ef2ce2bae5d994f7ab3c170b7f2c4664d9d8a3bfea1c1",
       "git_blob_sha1": "5c43f561996ba43f1828ca64760517ff7f8e43db",
+      "binary": false
+    },
+    {
+      "path": "tests_demo/test_confirmed_web.py",
+      "mode": "100644",
+      "bytes": 10136,
+      "sha256": "118052cdf1e792f85d5a08c114ac4bb3967e33e5455f27bcfb54ebef69222d9e",
+      "git_blob_sha1": "89f696f309d442249b91cbee9ba0e65988d5a222",
       "binary": false
     },
     {
@@ -792,6 +864,14 @@
       "bytes": 6996,
       "sha256": "29f3441751c9825b891bc5fe8cad1b21d4975ded0f35d673b880ada4c1e2f6d1",
       "git_blob_sha1": "2d07e0a9e921d1578d06806bb2bc75a95a3c906d",
+      "binary": false
+    },
+    {
+      "path": "tests_evaluation/test_intake_clarification.py",
+      "mode": "100644",
+      "bytes": 3536,
+      "sha256": "d1176911377ccd6457eafbe0d8a927cbd0d3af59d7328e9b101a62bf9c5fb26f",
+      "git_blob_sha1": "eec81408f92dd6f53307c8e2ac2c5a96d23cf027",
       "binary": false
     },
     {
@@ -3335,8 +3415,8 @@
       "binary": false
     }
   ],
-  "total_listed_files": 337,
-  "total_listed_bytes": 6948496,
+  "total_listed_files": 347,
+  "total_listed_bytes": 7002057,
   "largest_file": {
     "path": "upstream_reference/uv.lock",
     "mode": "100644",
@@ -3349,12 +3429,12 @@
     "upstream_source_modified": false
   },
   "binary_files": 5,
-  "text_files": 332,
+  "text_files": 342,
   "upstream_source_files": 212,
   "excluded_source_dataset_files": 12,
   "source_sanitized_files": [
     "upstream_reference/README.md"
   ],
   "note": "Excludes itself and root SHA256SUMS. Hashes are canonical Git-index blob bytes, independent of checkout CRLF conversion. Upstream provenance is unchanged.",
-  "updated_for": "human-confirmed-execution-v1"
+  "updated_for": "offline-confirmed-product-v1"
 }
